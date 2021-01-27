@@ -1,0 +1,15 @@
+{
+  "name": "vendor_name/portfolio",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Francisco Vieira",
+      "email": "francisco.vieira.dev@gmail.com"
+    }
+  ],
+  "require": {
+    "twig/twig": "^3.2"
+  }
+}

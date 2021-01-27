@@ -1,0 +1,98 @@
+<script>
+    // window.onload = alterURL;
+
+    function oneError(value) {
+        let val =  document.getElementById(value).id;
+
+        let pathDOC = "";
+        switch (extension(val)) {
+            case 'doc':
+                pathDOC = './resources/img/capa/doc.png';
+                break;
+
+            case 'docx':
+                pathDOC = './resources/img/capa/docx.png';
+                break;
+
+            case 'pdf':
+                pathDOC = './resources/img/capa/pdf.png';
+                break;
+
+            case 'odt':
+                pathDOC = './resources/img/capa/odt.png';
+                break;
+
+        }
+
+
+        document.getElementById(value).src = pathDOC;
+
+
+        console.log(extension(val));
+    }
+
+    function extension(value) {
+        let ext = value.split('.');
+        return ext[ext.length - 1];
+    }
+</script>
+
+
+<div class="container">
+    <h1 class="h1"> {{title}}</h1>
+    <div class="row mt-2">
+
+        <div class="col-12 col-sm-6">
+            <form class="" action="./?page=upload&method=submit" method="post" enctype="multipart/form-data">
+
+
+                <input type="hidden" name="MAX_FILE_SIZE" value="2147483647"/>
+                <input type="file" name="fileProduct" id="fileProduct" accept=
+                        "application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,
+text/plain, application/pdf, .png, .jpg, .jpeg, .svg">
+
+                <input type="submit" class="btn btn-primary" value="Enviar">
+
+            </form>
+        </div>
+        <div class="col-12 col-sm-6 text-right">
+
+            <a class="btn btn-secondary" href="./?page=painel">Voltar</a>
+
+        </div>
+
+    </div>
+    <div class="row mt-5">
+
+        {% for file in allFiles %}
+        <div class="col-2 mb-2">
+            <div class="card">
+                <div class="card-body">
+                    <img src="{{path}}{{file}}" alt="{{file}}" onerror="oneError('{{file}}')" title="{{file}}"
+                         width="250" height="auto" id="{{file}}"
+                         class="card-img">
+                </div >
+
+                <div class="card-body justify-content-center d-inline-flex">
+                    <div class="row">
+
+                        <span class="col-12 ">
+<!--                            <p class="card-text text-center">{{file}}</p>-->
+                        </span>
+                        <div class="col-12 mt-1">
+                            <p class="card-text text-center">
+                                <a class="btn-link" href="{{path}}{{file}}" download><i class="fa fa-download "
+                                                                                               title="Download"></i></a>
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+

@@ -1,0 +1,70 @@
+<section>
+    <header class="p-index-color p-2 my-2">
+        <h1 hidden>Francisco Vieira</h1>
+
+
+        <div class="row  my-2 ">
+
+            <div class="col-12">
+
+
+                <div class="row ">
+                    <div class="col d-inline-flex justify-content-end">
+                        <!--                    <nav class="navbar navbar-expand">-->
+                        <ul class="nav ">
+                            <li class="nav-item"><a class="nav-link" href="./?page=painel">Portfólios</a></li>
+                            <li class="nav-item"><a class="nav-link mr-auto"
+                                                    href="?page=user&method=change&id={{user.id}}">Editar perfil</a>
+                            <li class="nav-item"><a class="nav-link mr-auto" href="?page=user&method=close">Sair</a>
+                            </li>
+                        </ul>
+                        <!--                    </nav>-->
+                    </div>
+                </div>
+
+
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title text-dark">{{user.authorName}}</h4>
+                    </div>
+                    <div class="row no-gutters mb-2 ml-2">
+                        <div class="col-md-4">
+
+                            <img class="card-img-top" src="{{avatarPath}}"
+                                 alt="{{user.authorName}}"
+                                title="{{user.authorName}}" width="100" height="auto"/>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+
+                                <h5 class="card-subtitle">{{user.functionName}}</h5>
+                                <p class="card-text mt-2">{{user.story}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </header>
+<!--
+    <article class="mb-4">
+        <h6 class="h4 text-center my-4">Nossos serviços</h6>
+        <div class="row">
+            <div class=" col-12 col-sm-4">
+                <div class=" p-index-color p-size-info  my-2 my-sm-0">Valor 1</div>
+            </div>
+            <div class="col-12 col-sm-4">
+                <div class="p-index-color p-size-info   my-0">Valor 1</div>
+            </div>
+            <div class="col-12 col-sm-4">
+                <div class=" p-index-color p-size-info  my-2 my-sm-0">Valor 1</div>
+            </div>
+
+        </div>
+    </article>
+
+    -->
+</section>
+
+

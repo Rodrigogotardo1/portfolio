@@ -1,0 +1,97 @@
+<section>
+    <header>
+        <h1 hidden>Detalhes do portfólio</h1>
+    </header>
+    <div class="row  my-2 ">
+        <div class="col-12 col-sm-6 col-md-7 col-lg-8 ">
+            <article class="mb-4">
+                <header>
+                    <h4 class="h4 mt-4 text-center text-sm-left">{{title}}</h4>
+                    <p class=" mb-4 text-center text-sm-left">{{desc}}</p>
+                </header>
+                <div class="row mt-4">
+
+
+                    <div class=" col-12 col-sm-12">
+
+                        <div class="card p-index-color my-2 my-sm-3 my-sm-0">
+                            <div class="card-header">
+                                <h4 class="card-title text-dark text-center text-sm-left">{{subtitle}}</h4>
+                            </div>
+                            <div class="row no-gutters my-2 mx-2">
+                                <div class="col-md-4">
+                                    <img class="card-img-top" src="{{path}}{{user.login}}{{user.id}}/{{img}}"
+                                         alt="{{img}}"
+                                         title="{{file}}" width="100" height="auto"/>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-subtitle mb-4">Disciplinas:</h5>
+                                        <ul>
+                                            {% for content in contents %}
+                                            <p class="card-text" >
+
+                                            <li style="line-height: 10px">
+                                                {{content}}
+                                            </li>
+
+
+                                            </p>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row no-gutters my-4 mx-4 ">
+                                <div class="col-6 text-left  text-sm-center">
+                                    <a class=" btn btn-primary" href="#">Adicionar</a>
+                                </div>
+                                <div class="col-6 text-right text-sm-center">
+                                    <a class=" btn btn-primary" href="{{path}}{{file}}"
+                                       download="{{file}}">Download</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </article>
+        </div>
+        <div class=" col-12 col-sm-6 col-md-5 col-lg-4">
+            <div class="card w-100">
+                <div class="card-body col-12">
+                    <form class="" method="post">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Nome" required/>
+
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="E-mail" required/>
+                        </div>
+                        <div class="form-group">
+
+                            <input type="text" class="form-control" placeholder="Título da Mensagem" required/>
+                        </div>
+                        <div class="form-group">
+
+                                <textarea rows="4" cols="4" class="form-control" placeholder="Digite sua mensagem"
+                                          required></textarea>
+                        </div>
+                        <div class="form-group ">
+                            <input type="submit" value="Enviar"
+                                   class="btn btn-primary form-control col-4 m-auto d-block">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</section>
+<aside>
+
+</aside>
+
+
+

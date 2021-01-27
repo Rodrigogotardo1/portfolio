@@ -1,0 +1,46 @@
+<section>
+    <header>
+        <h1 hidden>Portfolios Unopar Francisco Vieira </h1>
+    </header>
+    <div class="row  my-2 ">
+
+        <div class="col-12 ">
+            <article class="mb-4">
+                <header>
+                    <h4 class="h4 text-center mt-4">PORTFÓLIO UNOPAR EAD</h4>
+                    <p class="text-center mb-4">Portfólios produzidos durante o curso de Análise e Desenvolvimento de
+                        Sistemas </p>
+                </header>
+                <div class="row mt-4">
+
+                    {% for doc in docs %}
+                    <div class=" col-sm-3">
+                        <div class="card p-index-color my-2 my-sm-3 my-sm-0">
+
+                            <h1 class="card-title text-center mt-2 h6">{{doc.title}}</h1>
+                            <figure>
+                                <img src="{{path}}{{doc.login}}{{doc.author}}/{{doc.imagePath}}" class="card-img"
+                                     alt="{{doc.filePath}}" title="{{doc.filePath}}">
+                                <figcaption class="card-title text-center">{{doc.subtitle}}</figcaption>
+                            </figure>
+                            <p class="card-text text-center mb-2"> <a href="./?page=docs&method=details&id={{doc.id}}" class="link-light">Detalhes</a></p>
+
+
+
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </article>
+        </div>
+
+    </div>
+
+
+</section>
+<aside>
+
+</aside>
+
+
+

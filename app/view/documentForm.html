@@ -1,0 +1,337 @@
+{% set link = '?page=docs&method=insert'%}
+{% set action = 'Salvar'%}
+{% if id != null %}
+{% set link = '?page=docs&method=update'%}
+{% set action = 'Atualizar'%}
+{% endif %}
+
+<script>
+    function selectImage(id) {
+
+        let name = document.getElementById(id).id;
+        let dir = document.getElementById(id).src;
+        let path = "";
+
+        function constructPath(value, index, array) {
+            if (index == 1) {
+                path += "/";
+            } else if (index > 1) {
+                if (index < array.length - 1) {
+                    path += "/" + value;
+                }
+            } else {
+                path += value;
+            }
+
+        }
+
+        dir.split('/').forEach(constructPath);
+
+        path = path + '/' + name;
+        console.log(path);
+
+        document.getElementById('viewImage').src = path;
+        // document.getElementById('imgId').innerHTML = name;
+        document.querySelector("[name='imagePath']").value = name;
+    }
+
+    function selectFile(id) {
+
+        let name = document.getElementById(id).id;
+        let dir = document.getElementById(id).src;
+        let path = "";
+
+        function constructPath(value, index, array) {
+            if (index == 1) {
+                path += "/";
+            } else if (index > 1) {
+                if (index < array.length - 1) {
+                    path += "/" + value;
+                }
+            } else {
+                path += value;
+            }
+
+        }
+
+        dir.split('/').forEach(constructPath);
+
+
+        path = path + '/' + name;
+        console.log();
+
+        let pathDOC = "";
+        switch (extension(name)) {
+            case 'doc':
+                pathDOC = './resources/img/capa/doc.png';
+                break;
+
+            case 'docx':
+                pathDOC = './resources/img/capa/docx.png';
+                break;
+
+            case 'pdf':
+                pathDOC = './resources/img/capa/pdf.png';
+                break;
+
+            case 'odt':
+                pathDOC = './resources/img/capa/odt.png';
+                break;
+
+        }
+
+
+        document.getElementById('viewFile').src = pathDOC;
+
+
+        document.querySelector("[name='filePath']").value = name;
+        // document.getElementById('fileId').innerHTML = name;
+    }
+
+    function oneError(value) {
+        let val = document.getElementById(value).id;
+
+        let pathDOC = "";
+        switch (extension(val)) {
+            case 'doc':
+                pathDOC = './resources/img/capa/doc.png';
+                break;
+
+            case 'docx':
+                pathDOC = './resources/img/capa/docx.png';
+                break;
+
+            case 'pdf':
+                pathDOC = './resources/img/capa/pdf.png';
+                break;
+
+            case 'odt':
+                pathDOC = './resources/img/capa/odt.png';
+                break;
+
+        }
+
+
+        document.getElementById(value).src = pathDOC;
+
+
+        console.log(extension(val));
+    }
+
+
+    function extension(file) {
+        let ext = file.split('.');
+        return ext[ext.length - 1];
+    }
+
+</script>
+<div class="row mt-3 mb-3">
+    <div class="col-sm-4 col-12">
+        <div class="row">
+            <!-- Coluna de arquivo de imagem-->
+
+
+            <div class="col-12 mt-2 mt-sm-0 col-sm-6 d-inline-flex justify-content-center">
+                <figure>
+                    <a data-toggle="modal" data-target="#file" href="#">
+                        <img src="{{imgFile}}" title="Arquivo do download" id="viewFile"
+                             class="img-fluid"
+                             height=120 width="120" onerror="oneError('{{filePath}}')"/>
+                        <figcaption class="text-center" id="fileId">
+                            Download
+                        </figcaption>
+                    </a>
+                </figure>
+            </div>
+            <!-- Coluna de imagem de arquivo-->
+            <div class="col-12 mt-2 mt-sm-0 col-sm-6 d-inline-flex justify-content-center">
+                <figure>
+                    <a data-toggle="modal" data-target="#image" href="#">
+                        <img src="{{imagePath}}" title="Capa de representação do portfólio" id="viewImage"
+                             class="img-fluid"
+                             height="120" width="120"/>
+                        <figcaption class="text-center" id="imgId">
+                            Visualização
+                        </figcaption>
+                    </a>
+                </figure>
+            </div>
+        </div>
+    </div>
+
+    <!-- Selecionar image do portfólio -->
+    <div class="modal fade" id="image" tabindex="-1" role="dialog"
+         aria-labelledby="title" aria-hidden="true">
+        <div class="modal-dialog  modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header ">
+                    <h5 class="modal-title " id="titleFile">{{titleImage}}</h5>
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            {% for image in images %}
+                            <div class="col-2 mb-2">
+                                <div class="card">
+
+                                    <img src="{{path}}{{image}}" alt="{{image}}" title="{{image}}" width="250"
+                                         height="auto" id="{{image}}"
+                                         class="card-img imageFile" onclick="selectImage('{{image}}')"/>
+
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">
+                        Fechar
+                    </button>
+                    <!--                        <a class="btn btn-primary" id="updateImage">Salvar-->
+                    <!--                            mudanças</a>-->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- final do selecionar arquivo do portfólio-->
+
+
+    <!-- Selecionar arquivo do portfólio-->
+    <div class="modal fade" id="file" tabindex="-1" role="dialog"
+         aria-labelledby="title" aria-hidden="true">
+        <div class="modal-dialog  modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header ">
+                    <h5 class="modal-title " id="titleImage">{{titleFile}}</h5>
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            {% for file in files %}
+
+                            <div class="col-3 mb-2">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <figure class="figure-img">
+                                            <img src="{{path}}{{file}}" alt="{{file}}" title="{{file}}" width="250"
+                                                 height="auto" id="{{file}}"
+                                                 class="card-img imageFile" onclick="selectFile('{{file}}')"
+                                                 onerror="oneError('{{file}}')"/>
+                                            <figcaption class="text-center">
+                                                {{file}}
+                                            </figcaption>
+                                        </figure>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            {% endfor %}
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">
+                        Fechar
+                    </button>
+                    <!--                        <a class="btn btn-primary" id="updateImage">Salvar-->
+                    <!--                            mudanças</a>-->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- final do selecionar portfólio-->
+
+
+    <!-- Formulário de envio dos dados do portólio-->
+    <div class="col-sm-8 col-12 ">
+        <form class="border shadow p-4  mx-auto col-12" method="post" action="{{link}}">
+
+            <input type="hidden" value="{{id}}" name="id" id="id">
+            <input type="hidden" value="{{author}}" name="author" id="author">
+            <input type="hidden" id="filePath" name="filePath" value="{{filePath}}"/>
+            <input type="hidden" id="imagePath" name="imagePath" value="{{imagePath}}"/>
+
+            <div class="form-group">
+                <label for="title">Título</label>
+                <input type="text" id="title" placeholder="Título" name="title" value="{{title}}" class="form-control"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label for="subtitle">Subtítulo</label>
+                <input type="text" id="subtitle" placeholder="Subtitle" name="subtitle" value="{{subtitle}}"
+                       class="form-control"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Descrição</label>
+                <textarea cols="6" rows="5" id="description" name="description"
+                          placeholder="Descrição do produto"
+                          class="form-control" required>{{description}}</textarea>
+            </div>
+            <div class="row">
+                <div class="col-6 col-sm-6">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-append">
+                                <span class="input-group-text">R$</span>
+                            </div>
+                            <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)"
+                                   name="price"
+                                   value="{{price}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-6 ">
+                    <span class="form-check mt-2">
+                        <input type="checkbox" name="download" id="download" class="form-check-input"
+                               title="Livre"
+                               {{download}}>
+                        <label class="form-check-label" for="download">Download</label>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group">
+
+                <textarea cols="6" rows="5" id="content" name="content"
+                          placeholder="Disciplinas separadas por (;)Primeira, Segunda,..."
+                          class="form-control" required>{{content}}</textarea>
+            </div>
+
+            <div class="form-group ">
+                <div class="row ">
+                    <div class="col-12 col-sm-6 ">
+                        <a class="form-control btn btn-secondary col-12 mb-2 mb-sm-0"
+                           href="./?page=painel">Voltar</a>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                        <input type="submit" class="form-control btn btn-primary col-12" value="Salvar">
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+
+</div>
+
+
