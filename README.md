@@ -6,4 +6,4 @@ Criar um arquivo de Javascript separado.
 Essa tela precisa ser trabalhada. Tem um formatado de tela com CSS pronto. Contudo, não fui eu o autor e não quero algo muito detalhado, e sim, algo mais simples.
 
 ##### Para implementar
-Os links de envio de mensagem e esqueci minha senha estão por implementar
+Os links de envio de mensagem e Esqueci minha senha estão por implementar
