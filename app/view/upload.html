@@ -2,7 +2,7 @@
     // window.onload = alterURL;
 
     function oneError(value) {
-        let val =  document.getElementById(value).id;
+        let val = document.getElementById(value).id;
 
         let pathDOC = "";
         switch (extension(val)) {
@@ -35,6 +35,16 @@
         let ext = value.split('.');
         return ext[ext.length - 1];
     }
+
+    let path = undefined;
+
+    function filePath(file) {
+        path = document.getElementById(file).id;
+        document.querySelector("[name='fileDelete']").value = path;
+        console.log(path);
+    }
+
+
 </script>
 
 
@@ -42,7 +52,7 @@
     <h1 class="h1"> {{title}}</h1>
     <div class="row mt-2">
 
-        <div class="col-12 col-sm-6">
+        <div class="col-12 col-sm-10">
             <form class="" action="./?page=upload&method=submit" method="post" enctype="multipart/form-data">
 
 
@@ -55,9 +65,24 @@ text/plain, application/pdf, .png, .jpg, .jpeg, .svg">
 
             </form>
         </div>
-        <div class="col-12 col-sm-6 text-right">
+        <div class="col-12 col-sm-2">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="  col-sm-6 ">
+                        <form method="post" action="./?page=upload&method=deleteFile"
+                              class="form-inline d-inline-flex justify-content-end">
+                            <input type="hidden" id="fileDelete" name="fileDelete"/>
+                            <input type="submit" class="btn btn-danger" id="delete" value="Delete"/>
+                        </form>
 
-            <a class="btn btn-secondary" href="./?page=painel">Voltar</a>
+                    </div>
+
+                    <div class=" col-sm-6 text-right">
+                        <a class="btn btn-secondary" href="./?page=painel">Voltar</a>
+
+                    </div>
+                </div>
+            </div>
 
         </div>
 
@@ -68,10 +93,11 @@ text/plain, application/pdf, .png, .jpg, .jpeg, .svg">
         <div class="col-2 mb-2">
             <div class="card">
                 <div class="card-body">
-                    <img src="{{path}}{{file}}" alt="{{file}}" onerror="oneError('{{file}}')" title="{{file}}"
+                    <img src="{{path}}{{file}}" alt="{{file}}" onerror="oneError('{{file}}')"
+                         onclick="filePath('{{file}}')" title="{{file}}"
                          width="250" height="auto" id="{{file}}"
                          class="card-img">
-                </div >
+                </div>
 
                 <div class="card-body justify-content-center d-inline-flex">
                     <div class="row">
@@ -82,7 +108,7 @@ text/plain, application/pdf, .png, .jpg, .jpeg, .svg">
                         <div class="col-12 mt-1">
                             <p class="card-text text-center">
                                 <a class="btn-link" href="{{path}}{{file}}" download><i class="fa fa-download "
-                                                                                               title="Download"></i></a>
+                                                                                        title="Download"></i></a>
                             </p>
                         </div>
 

@@ -156,7 +156,7 @@ class User
     public static function update($user): bool
     {
 
-        if (!User::existeLogin($user['login'], $user['psw'])) {
+//        if (!User::existeLogin($user['login'], $user['psw'])) {
             try {
                 if ($user['psw'] != $user['confirm']) {
                     return false;
@@ -194,9 +194,9 @@ class User
                 echo $e->getMessage();
                 return false;
             }
-        } else {
-            return false;
-        }
+//        } else {
+//            return false;
+//        }
 
 
         return true;

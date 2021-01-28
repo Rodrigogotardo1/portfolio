@@ -1,33 +1,31 @@
-
 <div class="container">
-    <div class="wrapper fadeInDown">
-        <div id="formContent">
-            <!-- Tabs Titles -->
+    <div class="row ">
+        <div class="col-12 justify-content-center d-inline-flex mt-4">
 
-            <!-- Icon -->
-            <div class="fadeIn first">
-                <img id="icon" src="./resources/img/icons/favicon-32x32.png"
-                     class="img-fluid mt-2" alt="Login"/>
-            </div>
 
-            <!-- Login Form -->
-            <form method="post" action="./?page=user&method=login">
-                <input type="text" id="login" name="login" class="fadeIn second "  required>
-                <input type="password" id="psw" name="psw" class="fadeIn third " required>
-                <input type="submit" class="fadeIn fourth" value="Acessar">
-            </form>
+            <form class="form-signin col-sm-4 col-12" method="post" action="./?page=user&method=login">
+                <div class="row  justify-content-center">
 
-            <!-- Remind Passowrd -->
-            <div id="formFooter">
-                <div class="row">
-                    <div class="col-12 col-sm-6 justify-content-start"> <a class="underlineHover" href="./?page=user&method=change">Criar conta</a></div>
-                    <div class="col-12 col-sm-6 justify-content-end"> <a class="underlineHover" href="#">Esqueceu a senha?</a></div>
+                    <img class=" img-fluid mb-4 mt-5" src="./resources/img/capa/perfil.png" alt="" width="72"
+                         height="72">
+
                 </div>
 
-            </div>
+                <h1 class="h3 mb-3 font-weight-normal text-center">Acesso</h1>
 
+                <label for="login" class="sr-only">Email address</label>
+                <input type="text" id="login" name="login" class="form-control" placeholder="Login" required=""
+                       autofocus="">
+                <label for="psw" class="sr-only">Password</label>
+                <input type="password" id="psw" name="psw" class="form-control" placeholder="Senha" required="">
+                <div class="criarConta mb-3 mt-2  justify-content-start">
+                    <a class="btn-link" href="./?page=user&method=change">Criar conta</a>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block col-12 col-sm-6 mx-auto" type="submit" onclick="">
+                    Acessar
+                </button>
+                <p class="mt-5 mb-3 text-muted text-center">Francisco Vieira© 2021</p>
+            </form>
         </div>
     </div>
-
 </div>
-

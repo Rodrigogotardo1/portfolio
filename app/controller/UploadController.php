@@ -22,7 +22,8 @@ class UploadController
 
         }
         $icon = '.' . pathinfo($fileName, PATHINFO_EXTENSION);
-        rename($destination, $dir . md5($fileName) . $icon);
+        $fileName = preg_replace("[^a-zA-Z0-9_]", "", strtr($fileName, "áàãâéêíóôõúüçÁÀÃÂÉÊÍÓÔÕÚÜÇ ", "aaaaeeiooouucAAAAEEIOOOUUC_"));
+        rename($destination, $dir . strtolower($fileName));
 
         return $destination;
     }
@@ -52,6 +53,18 @@ class UploadController
         }
     }
 
+    public static function deleteFile()
+    {
+        session_start();
+
+        $file = $_SESSION['dir'] . $_POST['fileDelete'];
+//        var_dump($file);
+
+
+        if (unlink($file)) {
+            self::index();
+        }
+    }
 
     public static function fragmentCode($content)
     {

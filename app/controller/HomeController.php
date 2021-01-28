@@ -16,6 +16,7 @@ class HomeController
             $content = array();
             $content['titleHome'] = "Lista de Alunos";
             $content['users'] = $perfis;
+//            $content['count'] = count($perfis);
             $content['path'] = 'http:'. './uploads/';
 
             $container = $template->render($content);
