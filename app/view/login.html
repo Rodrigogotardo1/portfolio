@@ -1,33 +1,24 @@
-
 <div class="container">
-    <div class="wrapper fadeInDown">
-        <div id="formContent">
-            <!-- Tabs Titles -->
 
-            <!-- Icon -->
-            <div class="fadeIn first">
-                <img id="icon" src="./resources/img/icons/favicon-32x32.png"
-                     class="img-fluid mt-2" alt="Login"/>
-            </div>
-
-            <!-- Login Form -->
-            <form method="post" action="./?page=user&method=login">
-                <input type="text" id="login" name="login" class="fadeIn second "  required>
-                <input type="password" id="psw" name="psw" class="fadeIn third " required>
-                <input type="submit" class="fadeIn fourth" value="Acessar">
-            </form>
-
-            <!-- Remind Passowrd -->
-            <div id="formFooter">
-                <div class="row">
-                    <div class="col-12 col-sm-6 justify-content-start"> <a class="underlineHover" href="./?page=user&method=change">Criar conta</a></div>
-                    <div class="col-12 col-sm-6 justify-content-end"> <a class="underlineHover" href="#">Esqueceu a senha?</a></div>
+    <div class="text-center mt-5">
+        <form class="form-signin mt-3" method="post" action="./?page=user&method=login">
+            <img class="mb-4" src="./resources/img/capa/perfil.png" alt="" width="72" height="72">
+            <h1 class="h3 mb-3 font-weight-normal">Logar no sistema</h1>
+            <label for="login" class="sr-only">Email address</label>
+            <input type="text" id="login" name="login" class="form-control" placeholder="Login" required autofocus>
+            <label for="psw" class="sr-only">Password</label>
+            <input type="password" id="psw" name="psw" class="form-control" placeholder="Senha" required>
+            <div class="checkbox mb-3">
+                <div class="col-12 col-sm-6 justify-content-start"><a class="underlineHover"
+                                                                      href="./?page=user&method=change">Criar conta</a>
                 </div>
-
             </div>
+            <input type="submit" class="fadeIn fourth" value="Acessar">
+            <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
+        </form>
 
-        </div>
+
     </div>
-
 </div>
+
 

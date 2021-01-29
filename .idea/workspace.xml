@@ -1,7 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="eaaecf20-8dcf-4b19-9d4d-dcc05109951a" name="Default Changelist" comment="" />
+    <list default="true" id="eaaecf20-8dcf-4b19-9d4d-dcc05109951a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.htaccess" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/errors/error.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/css/login.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/css/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.htaccess1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controller/DocsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controller/DocsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controller/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/model/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/model/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/model/connection/Connection.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/model/connection/Connection.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/template/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/template/header.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/view/details.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/view/details.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/view/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/view/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/view/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/view/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/view/userForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/view/userForm.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/css/login-css.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/file/file.doc" beforeDir="false" afterPath="$PROJECT_DIR$/resources/file/file.doc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/img/capa/doc.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/img/capa/doc.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/img/capa/docx.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/img/capa/docx.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/img/capa/image.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/img/capa/image.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/img/capa/odt.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/img/capa/odt.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/img/capa/pdf.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/img/capa/pdf.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/img/capa/perfil.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/img/capa/perfil.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/img/icons/favicon-16x16.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/img/icons/favicon-16x16.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/img/icons/favicon-32x32.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/img/icons/favicon-32x32.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/img/icons/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/resources/img/icons/favicon.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql.zip" beforeDir="false" afterPath="$PROJECT_DIR$/sql.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/admin240/file.doc" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/admin240/file.doc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/admin240/image.png" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/admin240/image.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/admin240/perfil.png" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/admin240/perfil.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/maria35/7dfc016817d031e77abd590bbfbe3a1c.svg" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/maria35/7dfc016817d031e77abd590bbfbe3a1c.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/maria35/file.doc" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/maria35/file.doc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/maria35/image.png" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/maria35/image.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/maria35/perfil.png" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/maria35/perfil.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/vieira34/download_file.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/vieira34/download_file.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/vieira34/enem.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/vieira34/enem.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/vieira34/file.doc" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/vieira34/file.doc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/vieira34/image.png" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/vieira34/image.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/vieira34/perfil.png" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/vieira34/perfil.png" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,6 +85,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
@@ -56,6 +100,9 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.47295865" />
     <property name="settings.editor.selected.configurable" value="configurable.group.language" />
   </component>
   <component name="RecentsManager">
@@ -120,6 +167,10 @@
       <workItem from="1611682185789" duration="23096000" />
       <workItem from="1611751008746" duration="83000" />
       <workItem from="1611751126519" duration="635000" />
+      <workItem from="1611857886960" duration="290000" />
+      <workItem from="1611858645087" duration="606000" />
+      <workItem from="1611862485047" duration="1075000" />
+      <workItem from="1611880673701" duration="2195000" />
     </task>
     <servers />
   </component>
@@ -137,5 +188,8 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>

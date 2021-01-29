@@ -77,7 +77,7 @@ class DocsController
             if (empty($doc->imagePath)) {
                 $content['imagePath'] = $pathDOC;
             } else {
-                $content['imagePath'] =$_SESSION['dir']. $doc->imagePath;
+                $content['imagePath'] = $_SESSION['dir'] . $doc->imagePath;
             }
 
             $content['content'] = $doc->content;
@@ -159,13 +159,15 @@ class DocsController
 
             $content = array();
             $content['user'] = User::findById($doc->author);
-            $content['title'] = $doc->title;
-            $content['subtitle'] = $doc->subtitle;
-            $content['desc'] = $doc->docdesc;
-            $content['img'] = $doc->imagePath;
-            $content['file'] = $doc->filePath;
-            $content['download'] = $doc->download;
-            $content['contents'] = explode(';', $doc->content);
+            $content['doc'] = $doc;
+
+//            $content['title'] = $doc->title;
+//            $content['subtitle'] = $doc->subtitle;
+//            $content['desc'] = $doc->docdesc;
+//            $content['img'] = $doc->imagePath;
+//            $content['file'] = $doc->filePath;
+//            $content['download'] = $doc->download;
+            $content['contents'] = explode(";", $doc->content);
             $content['path'] = './uploads/';
             $container = $template->render($content);
             echo $container;
