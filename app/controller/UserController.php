@@ -30,7 +30,6 @@ class UserController
     {
         $login = User::login($_POST);
         if ($login) {
-
             self::perfil();
         } else {
             $this->index();
@@ -129,6 +128,6 @@ class UserController
     public function close()
     {
         User::close();
-        self::index();
+       header('Location:?page=home');
     }
 }

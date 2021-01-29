@@ -12,11 +12,9 @@ class DocsController
             $twig = new \Twig\Environment($loader);
             $template = $twig->load('docs.html');
 
-
             session_start();
             $content = array();
             $content['docs'] = $docs;
-
             $content['path'] = './uploads/';
             $container = $template->render($content);
             echo $container;
@@ -46,40 +44,11 @@ class DocsController
             $content['description'] = $doc->docdesc;
             $content['price'] = $doc->price;
             $content['filePath'] = $doc->filePath;
-            $extension = pathinfo($doc->filePath, PATHINFO_EXTENSION);
-            $pathDOC = "";
-            switch ($extension) {
 
-                case 'doc':
-                    $pathDOC = './resources/img/capa/doc.png';
-                    break;
 
-                case 'docx':
-                    $pathDOC = './resources/img/capa/docx.png';
-                    break;
-
-                case 'pdf':
-                    $pathDOC = './resources/img/capa/pdf.png';
-                    break;
-
-                case 'odt':
-                    $pathDOC = './resources/img/capa/odt.png';
-                    break;
-
-                default:
-                    $pathDOC = './resources/img/capa/perfil.png';
-                    break;
-            }
             $content = UploadController::fragmentCode($content);
-
-            $content['imgFile'] = $pathDOC;
-
-            if (empty($doc->imagePath)) {
-                $content['imagePath'] = $pathDOC;
-            } else {
-                $content['imagePath'] = $_SESSION['dir'] . $doc->imagePath;
-            }
-
+            $extension = pathinfo($doc->filePath, PATHINFO_EXTENSION);
+            $content = self::extensionFileImage($doc, $extension, $content);
             $content['content'] = $doc->content;
 
             $container = $template->render($content);
@@ -142,7 +111,6 @@ class DocsController
 
     }
 
-
     public function details()
     {
 
@@ -160,13 +128,8 @@ class DocsController
             $content = array();
             $content['user'] = User::findById($doc->author);
             $content['doc'] = $doc;
+            $content['docs'] = Document::findAllById($doc->author);
 
-//            $content['title'] = $doc->title;
-//            $content['subtitle'] = $doc->subtitle;
-//            $content['desc'] = $doc->docdesc;
-//            $content['img'] = $doc->imagePath;
-//            $content['file'] = $doc->filePath;
-//            $content['download'] = $doc->download;
             $content['contents'] = explode(";", $doc->content);
             $content['path'] = './uploads/';
             $container = $template->render($content);
@@ -176,6 +139,44 @@ class DocsController
         } catch (Exception $exception) {
             echo $exception->getMessage();
         }
+    }
+
+    private function extensionFileImage($doc, $extension, $content)
+    {
+
+
+        switch ($extension) {
+
+            case 'doc':
+                $pathDOC = './resources/img/capa/doc.png';
+                break;
+
+            case 'docx':
+                $pathDOC = './resources/img/capa/docx.png';
+                break;
+
+            case 'pdf':
+                $pathDOC = './resources/img/capa/pdf.png';
+                break;
+
+            case 'odt':
+                $pathDOC = './resources/img/capa/odt.png';
+                break;
+
+            default:
+                $pathDOC = './resources/img/capa/perfil.png';
+                break;
+        }
+        $content['imgFile'] = $pathDOC;
+
+        if (empty($doc->imagePath)) {
+            $content['imagePath'] = $pathDOC;
+        } else {
+            $content['imagePath'] = $doc->imagePath;
+        }
+
+        return $content;
+
     }
 
 

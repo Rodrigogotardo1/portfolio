@@ -7,32 +7,33 @@ class Document
 
     public static function findAll(): array
     {
+        $list = array();
         try {
 
 
             $conn = Connection::getConnection();
-            $sql = $conn->prepare("SELECT * FROM document inner join author on document.author = author.id ");
-            $res = $sql->execute();
+            $sql = $conn->prepare("SELECT * FROM document;");
+            $result = $sql->execute();
 
-            if ($res) {
-                new Exception("Erro de conexão com o banco");
-            }
 
-            $list = array();
+           $list[] = $result->author;
+
+
             while ($row = $sql->fetchObject('Document')) {
                 $list[] = $row;
             }
-            return $list;
+
         } catch (Exception $e) {
             echo $e->getMessage();
 
         }
-
+        return $list;
 
     }
 
     public static function findAllById($author): array
     {
+        $list = array();
         try {
             $conn = Connection::getConnection();
             $sql = $conn->prepare("SELECT * FROM document  where author= :author");
@@ -43,16 +44,16 @@ class Document
                 new Exception("Erro de conexão com o banco");
             }
 
-            $list = array();
+
             while ($row = $sql->fetchObject('Document')) {
                 $list[] = $row;
             }
 
-            return $list;
         } catch (Exception $e) {
             echo $e->getMessage();
 
         }
+        return $list;
 
     }
 
@@ -100,12 +101,13 @@ class Document
             $sql->bindValue(':author', $_SESSION['id']);
             $sql->bindValue(':id', $doc['id']);
             $sql->execute();
-            return true;
+
         } catch (Exception $e) {
             echo $e->getMessage();
             return false;
 
         }
+        return true;
 
     }
 
@@ -115,21 +117,14 @@ class Document
             $conn = Connection::getConnection();
             $sql = $conn->prepare("delete from document where id=:id");
             $sql->bindValue(':id', $doc['id'], PDO::PARAM_INT);
-            $res = $sql->execute();
+            $sql->execute();
 
-
-            if ($res) {
-                echo new Exception("Falha ao excluir produto produto");
-                return false;
-            }
-
-            return true;
         } catch (Exception $e) {
             echo $e->getMessage();
             return false;
 
         }
-
+        return true;
     }
 
     public static function insert($doc): bool
@@ -149,13 +144,18 @@ class Document
             $image = "image.png";
         }
 
+        $value = "";
+        if (isset($doc['download'])) {
+            $value = 'checked';
+        }
+
         try {
             session_start();
             $conn = Connection::getConnection();
             $sql = $conn->prepare("INSERT INTO document (title, subtitle, download ,docdesc, price, filepath, imagepath, content, author) values(:title, :subtitle, :download ,:description, :price, :filePath, :imagePath, :content, :author)");
             $sql->bindValue(':title', trim($doc['title']));
             $sql->bindValue(':subtitle', trim($doc['subtitle']));
-            $sql->bindValue(':download', trim($doc['download']));
+            $sql->bindValue(':download', trim($value));
             $sql->bindValue(':description', trim($doc['description']));
             $sql->bindValue(':price', trim($doc['price']));
             $sql->bindValue(':content', trim($doc['content']));

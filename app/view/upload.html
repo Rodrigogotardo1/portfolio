@@ -2,7 +2,7 @@
     // window.onload = alterURL;
 
     function oneError(value) {
-        let val =  document.getElementById(value).id;
+        let val = document.getElementById(value).id;
 
         let pathDOC = "";
         switch (extension(val)) {
@@ -35,6 +35,12 @@
         let ext = value.split('.');
         return ext[ext.length - 1];
     }
+
+    function deleteFile(id) {
+        let file = document.getElementById(id).id;
+        console.log(file);
+        document.querySelector("[name='delete']").value = file;
+    }
 </script>
 
 
@@ -56,8 +62,21 @@ text/plain, application/pdf, .png, .jpg, .jpeg, .svg">
             </form>
         </div>
         <div class="col-12 col-sm-6 text-right">
+            <div class="row  d-inline-flex">
 
-            <a class="btn btn-secondary" href="./?page=painel">Voltar</a>
+                <div class="col-12 justify-content-end ">
+                    <form method="post" action="./?page=upload&method=delete" class="form-inline">
+                        <div class="form-group">
+                            <input type="hidden" id="delete" name="delete"/>
+                            <input type="submit" class="btn btn-danger" value="Excluir"/>
+                        </div>
+                        <div class="form-group mx-1"><a class="btn btn-secondary" href="./?page=painel">Voltar</a></div>
+
+                    </form>
+
+                </div>
+            </div>
+
 
         </div>
 
@@ -68,10 +87,11 @@ text/plain, application/pdf, .png, .jpg, .jpeg, .svg">
         <div class="col-2 mb-2">
             <div class="card">
                 <div class="card-body">
-                    <img src="{{path}}{{file}}" alt="{{file}}" onerror="oneError('{{file}}')" title="{{file}}"
+                    <img src="{{path}}{{file}}" alt="{{file}}" onerror="oneError('{{file}}')"
+                         onclick="deleteFile('{{file}}')" title="{{file}}"
                          width="250" height="auto" id="{{file}}"
                          class="card-img">
-                </div >
+                </div>
 
                 <div class="card-body justify-content-center d-inline-flex">
                     <div class="row">
@@ -82,7 +102,7 @@ text/plain, application/pdf, .png, .jpg, .jpeg, .svg">
                         <div class="col-12 mt-1">
                             <p class="card-text text-center">
                                 <a class="btn-link" href="{{path}}{{file}}" download><i class="fa fa-download "
-                                                                                               title="Download"></i></a>
+                                                                                        title="Download"></i></a>
                             </p>
                         </div>
 

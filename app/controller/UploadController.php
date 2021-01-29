@@ -52,6 +52,14 @@ class UploadController
         }
     }
 
+    public static function delete()
+    {
+        session_start();
+
+        unlink($_SESSION['dir'] . $_POST['delete']);
+        header('location:?page=upload');
+
+    }
 
     public static function fragmentCode($content)
     {

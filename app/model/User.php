@@ -10,21 +10,18 @@ class User
 
     public static function perfil()
     {
-        $conn = Connection::getConnection();
-        $sql = $conn->prepare("SELECT * FROM author where id=:id");
-        $sql->bindValue(':id', $_SESSION['id'], PDO::PARAM_INT);
-        $sql->execute();
+        try {
 
 
-        $row = $sql->fetchObject('User');
+            $conn = Connection::getConnection();
+            $sql = $conn->prepare("SELECT * FROM author where id=:id");
+            $sql->bindValue(':id', $_SESSION['id'], PDO::PARAM_INT);
+            $sql->execute();
 
-
-        if (!$row) {
-            new Exception("Não foi possível acessar o sistema");
+            return $sql->fetchObject('User');
+        } catch (Exception $e) {
+            return $e->getMessage();
         }
-
-
-        return $row;
 
 
     }
@@ -32,88 +29,96 @@ class User
     public static function login($login)
     {
 
-
-        $conn = Connection::getConnection();
-        $sql = $conn->prepare("SELECT * FROM author where login= :login and psw=:psw");
-        $sql->bindValue(':login', trim($login['login']));
-        $sql->bindValue(':psw', base64_encode($login['psw']));
-
-        $sql->execute();
-
-        $row = $sql->fetchObject('User');
+        try {
 
 
-        if (!$row) {
-            new Exception("Não foi possível acessar o sistema");
-            return false;
-        }
+            $conn = Connection::getConnection();
+            $sql = $conn->prepare("SELECT * FROM author where login= :login and psw=:psw");
+            $sql->bindValue(':login', trim($login['login']));
+            $sql->bindValue(':psw', base64_encode($login['psw']));
 
-        session_start();
-//        session_name('Global');
-        if ((!isset($_SESSION['user'])) == true) {
-            $_SESSION['id'] = $row->id;
-            $_SESSION['user'] = self::userName($row->login);
-            $_SESSION['avatar'] = $row->avatarPath;
-        }
+            $sql->execute();
 
-        $dir = './uploads/' . $_SESSION['user'] . $_SESSION['id'] . '/';
-        if (!file_exists($dir)) {
-            $oldUmask = umask(0);
-            mkdir($dir, 0777, true);
-            umask($oldUmask);
-            $_SESSION['dir'] = $dir;
+            $row = $sql->fetchObject('User');
 
-
-            $file = array('./resources/img/capa/image.png', './resources/file/file.doc', './resources/img/capa/perfil.png');
-            $copy = array($_SESSION['dir'] . 'image.png', $_SESSION['dir'] . 'file.doc', $_SESSION['dir'] . 'perfil.png');
-            for ($i = 0; $i < count($file); $i++) {
-                if (!copy($file[$i], $copy[$i])) {
-                    echo "falha ao copiar $file...\n";
-                }
+            if(!$row){
+                return  false;
             }
 
 
+            session_start();
+
+            if ((!isset($_SESSION['user'])) == true) {
+                $_SESSION['id'] = $row->id;
+                $_SESSION['user'] = self::userName($row->login);
+                $_SESSION['avatar'] = $row->avatarPath;
+            }
+
+            $dir = './uploads/' . $_SESSION['user'] . $_SESSION['id'] . '/';
+            if (!file_exists($dir)) {
+                $oldUmask = umask(0);
+                mkdir($dir, 0777, true);
+                umask($oldUmask);
+                $_SESSION['dir'] = $dir;
+
+
+                $file = array('./resources/img/capa/image.png', './resources/file/file.doc', './resources/img/capa/perfil.png');
+                $copy = array($_SESSION['dir'] . 'image.png', $_SESSION['dir'] . 'file.doc', $_SESSION['dir'] . 'perfil.png');
+                for ($i = 0; $i < count($file); $i++) {
+                    if (!copy($file[$i], $copy[$i])) {
+                        echo "falha ao copiar $file...\n";
+                    }
+                }
+
+
+            }
+            $_SESSION['dir'] = $dir;
+            return $row;
+        } catch (Exception $e) {
+            return $e->getMessage();
         }
-        $_SESSION['dir'] = $dir;
-        return $row;
 
     }
 
     public static function findAll(): array
     {
-        $conn = Connection::getConnection();
-        $sql = $conn->prepare("SELECT * FROM author");
-        $res = $sql->execute();
         $array = array();
-        while ($row = $sql->fetchObject('User')) {
-            $array[] = $row;
+        try {
+            $conn = Connection::getConnection();
+            $sql = $conn->prepare("SELECT * FROM author");
+            $sql->execute();
 
-        }
+            while ($row = $sql->fetchObject('User')) {
+                $array[] = $row;
 
-        if (!$res) {
-            echo new Exception("Erro ao listar usuários");
+            }
+
+        } catch (Exception $e) {
+            echo $e->getMessage();
+
         }
         return $array;
-
     }
 
     public static function findById($id)
     {
-        $conn = Connection::getConnection();
-        $sql = $conn->prepare("SELECT * FROM author  where id=:id");
+        try {
+            $conn = Connection::getConnection();
+            $sql = $conn->prepare("SELECT * FROM author  where id=:id");
 
-        $sql->bindValue(':id', $id);
-        $sql->execute();
+            $sql->bindValue(':id', $id);
+            $sql->execute();
 
-        $row = $sql->fetchObject('User');
+            $row = $sql->fetchObject('User');
 
-        if (!$row) {
-            new Exception("Não foi possível acessar o sistema");
-            return false;
-        } else {
             $row->documents = Document::findAllById($id);
+
+            return $row;
+        } catch (Exception $e) {
+            return $e->getMessage();
+
+
         }
-        return $row;
     }
 
     public static function insert($user): bool
@@ -139,7 +144,6 @@ class User
                 $sql->bindValue(':functionName', trim($user['functionName']));
                 $sql->bindValue(':story', trim($user['story']));
                 $sql->execute();
-                return true;
             } catch (Exception $e) {
                 echo $e->getMessage();
                 return false;
@@ -157,44 +161,39 @@ class User
     {
 
 
-            try {
-                if ($user['psw'] != $user['confirm']) {
-                    return false;
-                }
-
-                $conn = Connection::getConnection();
-                $sql = $conn->prepare("UPDATE author SET authorName=:author, avatarPath=:avatar, email=:email, login=:login, psw=:psw, story=:story, functionName=:functionName where id=:id");
-
-                $sql->bindValue(':author', trim($user['authorName']));
-                $sql->bindValue(':avatar', trim($user['avatarPath']));
-                $sql->bindValue(':email', trim($user['email']));
-                $sql->bindValue(':login', trim($user['login']));
-
-                $sql->bindValue(':psw', base64_encode($user['psw']));
-
-                $sql->bindValue(':story', trim($user['story']));
-                $sql->bindValue(':functionName', trim($user['functionName']));
-                $sql->bindValue(':id', $user['id']);
-
-                $row = $sql->execute();
-
-                if (!$row) {
-                    new Exception("Erro ao atualizar os dados");
-                    return false;
-                }
-                session_start();
-                $update = rename($_SESSION['dir'], './uploads/' . self::userName($user['login']) . $user['id'] . '/');
-                if ($update) {
-                    unset($_SESSION['dir']);
-                    session_start();
-                    $_SESSION['dir'] = './uploads/' . self::userName($user['login']) . $user['id'] . '/';
-                }
-
-            } catch (Exception $e) {
-                echo $e->getMessage();
+        try {
+            if ($user['psw'] != $user['confirm']) {
                 return false;
             }
-      
+
+            $conn = Connection::getConnection();
+            $sql = $conn->prepare("UPDATE author SET authorName=:author, avatarPath=:avatar, email=:email, login=:login, psw=:psw, story=:story, functionName=:functionName where id=:id");
+
+            $sql->bindValue(':author', trim($user['authorName']));
+            $sql->bindValue(':avatar', trim($user['avatarPath']));
+            $sql->bindValue(':email', trim($user['email']));
+            $sql->bindValue(':login', trim($user['login']));
+
+            $sql->bindValue(':psw', base64_encode($user['psw']));
+
+            $sql->bindValue(':story', trim($user['story']));
+            $sql->bindValue(':functionName', trim($user['functionName']));
+            $sql->bindValue(':id', $user['id']);
+
+            $sql->execute();
+
+            session_start();
+            $update = rename($_SESSION['dir'], './uploads/' . self::userName($user['login']) . $user['id'] . '/');
+            if ($update) {
+                unset($_SESSION['dir']);
+                session_start();
+                $_SESSION['dir'] = './uploads/' . self::userName($user['login']) . $user['id'] . '/';
+            }
+
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            return false;
+        }
 
 
         return true;
@@ -217,17 +216,37 @@ class User
                     $conn = Connection::getConnection();
                     $sql = $conn->prepare("DELETE FROM author where id=:id");
                     $sql->bindValue(':id', $user['id'], PDO::PARAM_INT);
-                    $row = $sql->execute();
-                    if (!$row) {
-                        return false;
-                    }
-                    self::close();
+                    $sql->execute();
+
                 };
             }
 
             return true;
         } catch (Exception $e) {
             echo $e->getMessage();
+        } finally {
+            self::allDocuments($user['id']);
+            self::close();
+        }
+
+    }
+
+    /*
+     * Esse método foi implementado pelo fato de o banco de dados
+     * não responder ao ON DELETE CASCADE;
+     */
+    public static function allDocuments($author): bool
+    {
+        try {
+            $conn = Connection::getConnection();
+            $sql = $conn->prepare("delete from document where author=:id");
+            $sql->bindValue(':id', $author, PDO::PARAM_INT);
+            $sql->execute();
+            return true;
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            return false;
+
         }
 
     }
@@ -270,6 +289,9 @@ class User
             );
         }
         session_destroy();
+        session_write_close();
+        setcookie(session_name(),'',0,'/');
+        session_regenerate_id(true);
     }
 
     public static function existeLogin($login, $psw): bool
