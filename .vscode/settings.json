@@ -1,0 +1,4 @@
+{
+    "restructuredtext.confPath": "${workspaceFolder}/vendor/twig/twig/doc/_build",
+    "python.pythonPath": "/usr/bin/python3"
+}

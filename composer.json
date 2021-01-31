@@ -1,15 +1,15 @@
 {
-  "name": "vendor_name/portfolio",
-  "description": "description",
-  "minimum-stability": "stable",
-  "license": "proprietary",
-  "authors": [
-    {
-      "name": "Francisco Vieira",
-      "email": "francisco.vieira.dev@gmail.com"
+    "name": "vendor_name/portfolio",
+    "description": "description",
+    "minimum-stability": "stable",
+    "license": "proprietary",
+    "authors": [{
+        "name": "Francisco Vieira",
+        "email": "francisco.vieira.dev@gmail.com",
+        "name": "Rodrigo Gotardo",
+        "email": "dev.rodrigo.dev@gmail.com"
+    }],
+    "require": {
+        "twig/twig": "^3.2"
     }
-  ],
-  "require": {
-    "twig/twig": "^3.2"
-  }
 }

@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <style>
     .card-houver:hover {
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -40,10 +41,54 @@
                     <p class=" card-text text-center">
                         <a href="?page=home&method=portfolio&id={{user.id}}" class="btn-link">Portfólios</a>
                     </p>
+=======
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+    <h1 class="h3 text-center  text-sm-left mt-4 mb-4">{{titleHome}}</h1>
+    <!--<p>{{count}}</p>-->
+    <div class="row">
+        <div class="col-sm-8 col-12">
+            {% for user in users%}
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title text-dark text-center text-sm-left">{{user.authorName}}</h4>
+                </div>
+                <div class="row no-gutters mb-2 ml-2">
+                    <div class="col-sm-2">
+                        <!-- --------------------------------------- -->
+
+                        <img class="card-img-top" src="{{path}}{{user.login}}{{user.id}}/{{user.avatarPath}}" alt="{{user.authorName}}" title="{{user.authorName}}" width="130" height="auto" />
+
+
+                    </div>
+                    <div class="col-sm-10">
+                        <div class="card-body">
+
+                            <h5 class="card-subtitle">{{user.functionName}}</h5>
+                            <p class="card-text mt-2">{{user.story}}</p>
+                        </div>
+                        <div class="card-footer ">
+                            <div class="row">
+                                <div class="col-sm-6 col-12 text-sm-left text-center "><a href="?page=home&method=portfolio&id={{user.id}}" class="card-link">Portfólios</a></div>
+                                <div class="col-sm-6 col-12 text-sm-right text-center "><a href="#" class="card-link ">Mensagem</a></div>
+
+                            </div>
+                        </div>
+                    </div>
+>>>>>>> Stashed changes
                 </div>
 
             </div>
+            {% endfor %}
         </div>
+<<<<<<< Updated upstream
         </div>
         {% endfor %}
 
@@ -51,3 +96,11 @@
 
     </div>
 </div>
+=======
+        <div class="col-sm-4 col-12"></div>
+
+    </div>
+</body>
+
+</html>
+>>>>>>> Stashed changes

@@ -1,183 +1,170 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+
 <body>
-{% set subType = "Salvar" %}
-{% set action = './?page=user&method=insert' %}
+    {% set subType = "Salvar" %} {% set action = './?page=user&method=insert' %} {% if user.id != null %} {% set subType="Atualizar" %} {% set action='./?page=user&method=update' %} {% endif %}
 
-{% if user.id != null %}
-{% set subType="Atualizar" %}
-{% set action='./?page=user&method=update' %}
-{% endif %}
+    <script>
+        function selectFile(id) {
+            let title = document.getElementById(id).title;
 
-<script>
-    function selectFile(id) {
-        let title = document.getElementById(id).title;
+            let dir = document.getElementById(id).src;
+            let path = "";
 
-        let dir = document.getElementById(id).src;
-        let path = "";
+            function constructPath(value, index, array) {
+                console.log("a[" + index + "] = " + value);
 
-        function constructPath(value, index, array) {
-            console.log("a[" + index + "] = " + value);
-
-            if (index == 1) {
-                path += "/";
-            } else if (index > 1) {
-                if (index < array.length - 1) {
-                    path += "/" + value;
+                if (index == 1) {
+                    path += "/";
+                } else if (index > 1) {
+                    if (index < array.length - 1) {
+                        path += "/" + value;
+                    }
+                } else {
+                    path += value;
                 }
-            } else {
-                path += value;
+
             }
 
+            dir.split('/').forEach(constructPath);
+
+            console.log(path + '/' + title);
+
+            document.getElementById('imagePerfil').src = path + '/' + title;
+
+
+            // console.log(path);
+
+            document.querySelector("[name='avatarPath']").value = title;
         }
+    </script>
+    <div class="mt-4">
 
-        dir.split('/').forEach(constructPath);
-
-        console.log(path + '/' + title);
-
-        document.getElementById('imagePerfil').src = path + '/' + title;
+        <div class="row">
 
 
-        // console.log(path);
+            <div class="col-12 col-sm-4 d-inline-flex justify-content-center">
+                <a data-toggle="modal" data-target="#perfil" href="#">
+                    <img src="{{path}}{{user.avatarPath}}" alt="{{user.authorName}}" title="{{user.authorName}}" class="img-fluid" id="imagePerfil" name="imagePerfil" />
+                </a>
+            </div>
 
-        document.querySelector("[name='avatarPath']").value = title;
-    }
-</script>
-<div class="mt-4">
-
-    <div class="row">
-
-
-        <div class="col-12 col-sm-4 d-inline-flex justify-content-center">
-            <a data-toggle="modal" data-target="#perfil" href="#">
-                <img src="{{path}}{{user.avatarPath}}" alt="{{user.authorName}}" title="{{user.authorName}}" class="img-fluid"
-                     id="imagePerfil" name="imagePerfil"/>
-            </a>
-        </div>
-
-        <!-- --------------------------------------- -->
-        <div class="modal fade" id="perfil" tabindex="-1" role="dialog"
-             aria-labelledby="title" aria-hidden="true">
-            <div class="modal-dialog  modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header ">
-                        <h5 class="modal-title " id="title">{{titleFile}}</h5>
-                        <button type="button" class="close" data-dismiss="modal"
-                                aria-label="Fechar">
+            <!-- --------------------------------------- -->
+            <div class="modal fade" id="perfil" tabindex="-1" role="dialog" aria-labelledby="title" aria-hidden="true">
+                <div class="modal-dialog  modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header ">
+                            <h5 class="modal-title " id="title">{{titleFile}}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="container-fluid">
-                            <div class="row">
-                                {% for image in images %}
-                                <div class="col-2 mb-2">
-                                    <div class="card ">
+                        </div>
+                        <div class="modal-body">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    {% for image in images %}
+                                    <div class="col-2 mb-2">
+                                        <div class="card ">
 
-                                        <img src="{{path}}{{image}}" alt="{{image}}" title="{{image}}" width="250"
-                                             height="auto" id="{{image}}" name="{{image}}"
-                                             class="card-img imageFile" onclick="selectFile('{{image}}')"/>
+                                            <img src="{{path}}{{image}}" alt="{{image}}" title="{{image}}" width="250" height="auto" id="{{image}}" name="{{image}}" class="card-img imageFile" onclick="selectFile('{{image}}')" />
 
+                                        </div>
                                     </div>
+                                    {% endfor %}
                                 </div>
-                                {% endfor %}
+
                             </div>
 
                         </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">
                             Fechar
                         </button>
-                        <!--                        <a class="btn btn-primary" id="updateImage">Salvar-->
-                        <!--                            mudanças</a>-->
+                            <!--                        <a class="btn btn-primary" id="updateImage">Salvar-->
+                            <!--                            mudanças</a>-->
 
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- --------------------------------------- -->
-        <div class="col-12 col-sm-8">
-            <form method="post" action="{{action}}">
+            <!-- --------------------------------------- -->
+            <div class="col-12 col-sm-8">
+                <form method="post" action="{{action}}">
 
 
-                <input type="hidden" value="{{user.id}}" name="id">
-                <input type="hidden" value="{{user.avatarPath}}" name="avatarPath" id="avatarPath">
+                    <input type="hidden" value="{{user.id}}" name="id">
+                    <input type="hidden" value="{{user.avatarPath}}" name="avatarPath" id="avatarPath">
 
-                <div class="form-group">
-                    <label for="authorName">Nome:</label>
-                    <input type="text" name="authorName" id="authorName" value="{{user.authorName}}"
-                           class="form-control" required>
-                </div>
-
-
-                <div class="form-group">
-                    <label for="functionName">Função:</label>
-                    <input type="text" name="functionName" id="functionName" value="{{user.functionName}}"
-                           class="form-control" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" name="email" id="email" value="{{user.email}}" class="form-control" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="login">Login:</label>
-                    <input type="text" name="login" id="login" value="{{user.login}}" class="form-control" required>
-                </div>
-
-                <div class="row">
-                    <div class="col-12 col-sm-6">
-                        <div class="form-group">
-                            <label for="psw">Senha:</label>
-                            <input type="password" name="psw" id="psw" value="{{password}}" class="form-control"
-                                   required>
-                        </div>
+                    <div class="form-group">
+                        <label for="authorName">Nome:</label>
+                        <input type="text" name="authorName" id="authorName" value="{{user.authorName}}" class="form-control" required>
                     </div>
-                    <div class="col-12 col-sm-6">
-                        <div class="form-group">
-                            <label for="confirm">Confirmar Senha:</label>
-                            <input type="password" name="confirm" id="confirm" value="{{confirm}}" class="form-control"
-                                   required>
-                        </div>
+
+
+                    <div class="form-group">
+                        <label for="functionName">Função:</label>
+                        <input type="text" name="functionName" id="functionName" value="{{user.functionName}}" class="form-control" required>
                     </div>
-                </div>
 
-                <div class="form-group">
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" name="email" id="email" value="{{user.email}}" class="form-control" required>
+                    </div>
 
-            <textarea cols="25" rows="5" class="form-control" name="story" id="story"
-                      placeholder="Habilidades, competências, etc">{{user.story}}</textarea>
-                </div>
+                    <div class="form-group">
+                        <label for="login">Login:</label>
+                        <input type="text" name="login" id="login" value="{{user.login}}" class="form-control" required>
+                    </div>
 
-                <div class="form-group">
                     <div class="row">
+                        <div class="col-12 col-sm-6">
+                            <div class="form-group">
+                                <label for="psw">Senha:</label>
+                                <input type="password" name="psw" id="psw" value="{{password}}" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <div class="form-group">
+                                <label for="confirm">Confirmar Senha:</label>
+                                <input type="password" name="confirm" id="confirm" value="{{confirm}}" class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
 
-                        <span class="col-sm-4 col-4 mt-1 mt-sm-0 mb-1 mb-md-0"> <a
+                    <div class="form-group">
+
+                        <textarea cols="25" rows="5" class="form-control" name="story" id="story" placeholder="Habilidades, competências, etc">{{user.story}}</textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+
+                            <span class="col-sm-4 col-4 mt-1 mt-sm-0 mb-1 mb-md-0"> <a
                                 href="./?page=user" class="form-control btn btn-secondary col-sm-12 ">Voltar</a></span>
 
-                        <span class="col-sm-4 col-4 mt-1 mt-sm-0 mb-2 mb-md-0"> <input type="submit"
+                            <span class="col-sm-4 col-4 mt-1 mt-sm-0 mb-2 mb-md-0"> <input type="submit"
                                                                                         value="{{subType}}"
                                                                                         class="form-control btn btn-primary col-sm-12"/></span>
-                        <span class="col-sm-4 col-4 mt-1 mt-sm-0 mb-2 mb-md-0"> <a
+                            <span class="col-sm-4 col-4 mt-1 mt-sm-0 mb-2 mb-md-0"> <a
                                 href="./?page=user&method=delete&id={{user.id}}" class="form-control btn btn-danger col-sm-12  ">Excluir</a></span>
 
 
+                        </div>
+
                     </div>
 
-                </div>
+                </form>
+            </div>
 
-            </form>
         </div>
-
     </div>
-</div>
 
 
 </body>
+
 </html>
