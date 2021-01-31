@@ -7,7 +7,7 @@
     }
 
     .card{
-        width: 50px;
+        /*max-width: 12.5rem!important;*/
         height: auto;
     }
 
@@ -20,18 +20,19 @@
     <div class="row">
 
         {% for user in users%}
-        <div class="card mt-3 mb-1 mr-0 mr-sm-1  col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3 px-1 py-1 card-houver">
+        <div class="col-6 col-sm-3  mt-3 ">
+        <div class="card px-1 py-1 card-houver">
             <div class="card-header  px-0 py-0">
-
+                <h1 class="card-title text-dark text-center h5">{{user.authorName}}</h1>
                 <img class="card-img" src="{{path}}{{user.login}}{{user.id}}/{{user.avatarPath}}"
                      alt="{{user.authorName}}"
                      title="{{user.authorName}}" width="90" height="auto"/>
 
             </div>
             <div class="row no-gutters ">
-                <div class="col-12 card-header py-2">
-                    <h1 class="card-title text-dark text-center h5">{{user.authorName}}</h1>
-                </div>
+<!--                <div class="col-12 card-header py-2">-->
+<!--                   -->
+<!--                </div>-->
                 <div class="card-body col-12 px-1">
                     <h3 class="card-subtitle h6 ">{{user.functionName}}</h3>
                 </div>
@@ -42,6 +43,7 @@
                 </div>
 
             </div>
+        </div>
         </div>
         {% endfor %}
 
