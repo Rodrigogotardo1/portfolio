@@ -7,27 +7,27 @@ class Document
 
     public static function findAll(): array
     {
-        $list = array();
+
         try {
 
 
             $conn = Connection::getConnection();
-            $sql = $conn->prepare("SELECT * FROM document;");
+            $sql = $conn->prepare("select  document.id,  title,subtitle,docdesc,download,price,filePath,imagePath,content,  author, login from document inner join author on document.author  = author.id;");
             $result = $sql->execute();
 
 
            $list[] = $result->author;
 
-
+            $list = array();
             while ($row = $sql->fetchObject('Document')) {
                 $list[] = $row;
             }
-
+            return $list;
         } catch (Exception $e) {
             echo $e->getMessage();
 
         }
-        return $list;
+
 
     }
 
@@ -84,6 +84,10 @@ class Document
         if (isset($doc['download'])) {
             $value = 'checked';
         }
+        $image = trim($doc['imagePath']);
+        if (empty($image)) {
+            $image = "image.png";
+        }
 
 
         session_start();
@@ -97,7 +101,7 @@ class Document
             $sql->bindValue(':content', trim($doc['content']));
             $sql->bindValue(':price', trim($doc['price']));
             $sql->bindValue(':filePath', trim($doc['filePath']));
-            $sql->bindValue(':imagePath', trim($doc['imagePath']));
+            $sql->bindValue(':imagePath', $image);
             $sql->bindValue(':author', $_SESSION['id']);
             $sql->bindValue(':id', $doc['id']);
             $sql->execute();

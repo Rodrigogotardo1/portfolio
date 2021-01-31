@@ -5,126 +5,8 @@
 {% set action = 'Atualizar'%}
 {% endif %}
 
-<script>
-    function selectImage(id) {
-
-        let name = document.getElementById(id).id;
-        let dir = document.getElementById(id).src;
-        let path = "";
-
-        function constructPath(value, index, array) {
-            if (index == 1) {
-                path += "/";
-            } else if (index > 1) {
-                if (index < array.length - 1) {
-                    path += "/" + value;
-                }
-            } else {
-                path += value;
-            }
-
-        }
-
-        dir.split('/').forEach(constructPath);
-
-        path = path + '/' + name;
-        console.log(path);
-
-        document.getElementById('viewImage').src = path;
-        // document.getElementById('imgId').innerHTML = name;
-        document.querySelector("[name='imagePath']").value = name;
-    }
-
-    function selectFile(id) {
-
-        let name = document.getElementById(id).id;
-        let dir = document.getElementById(id).src;
-        let path = "";
-
-        function constructPath(value, index, array) {
-            if (index == 1) {
-                path += "/";
-            } else if (index > 1) {
-                if (index < array.length - 1) {
-                    path += "/" + value;
-                }
-            } else {
-                path += value;
-            }
-
-        }
-
-        dir.split('/').forEach(constructPath);
 
 
-        path = path + '/' + name;
-        console.log();
-
-        let pathDOC = "";
-        switch (extension(name)) {
-            case 'doc':
-                pathDOC = './resources/img/capa/doc.png';
-                break;
-
-            case 'docx':
-                pathDOC = './resources/img/capa/docx.png';
-                break;
-
-            case 'pdf':
-                pathDOC = './resources/img/capa/pdf.png';
-                break;
-
-            case 'odt':
-                pathDOC = './resources/img/capa/odt.png';
-                break;
-
-        }
-
-
-        document.getElementById('viewFile').src = pathDOC;
-
-
-        document.querySelector("[name='filePath']").value = name;
-        // document.getElementById('fileId').innerHTML = name;
-    }
-
-    function oneError(value) {
-        let val = document.getElementById(value).id;
-
-        let pathDOC = "";
-        switch (extension(val)) {
-            case 'doc':
-                pathDOC = './resources/img/capa/doc.png';
-                break;
-
-            case 'docx':
-                pathDOC = './resources/img/capa/docx.png';
-                break;
-
-            case 'pdf':
-                pathDOC = './resources/img/capa/pdf.png';
-                break;
-
-            case 'odt':
-                pathDOC = './resources/img/capa/odt.png';
-                break;
-
-        }
-
-
-        document.getElementById(value).src = pathDOC;
-
-
-        console.log(extension(val));
-    }
-
-
-    function extension(file) {
-        let ext = file.split('.');
-        return ext[ext.length - 1];
-    }
-
-</script>
 <div class="row mt-3 mb-3">
     <div class="col-sm-4 col-12">
         <div class="row">
@@ -134,9 +16,9 @@
             <div class="col-12 mt-2 mt-sm-0 col-sm-6 d-inline-flex justify-content-center">
                 <figure>
                     <a data-toggle="modal" data-target="#file" href="#">
-                        <img src="{{imgFile}}" title="Arquivo do download" id="viewFile"
+                        <img src="{{imgFile}}" title="{{path}}{{imgFile}}" id="viewFile"
                              class="img-fluid"
-                             height=120 width="120" onerror="oneError('{{filePath}}')"/>
+                             height=120 width="120"/>
                         <figcaption class="text-center" id="fileId">
                             Download
                         </figcaption>

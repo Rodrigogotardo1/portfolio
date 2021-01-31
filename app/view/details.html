@@ -1,3 +1,6 @@
+{% if userId != "" %}
+{% set download = path~user.login~user.id~"/"~doc.filePath %}
+{% endif %}
 <section>
     <header>
         <h1 hidden>Detalhes do portfólio</h1>
@@ -31,12 +34,10 @@
                                             {% for content in contents %}
                                             <p class="card-text" >
 
-                                            <li style="line-height: 10px">
+                                            <li style="line-height: 15px">
                                                 {{content}}
                                             </li>
-
-
-                                            </p>
+  </p>
                                             {% endfor %}
                                         </ul>
                                     </div>
@@ -47,7 +48,7 @@
                                     <a class=" btn btn-primary" href="#">Adicionar</a>
                                 </div>
                                 <div class="col-6 text-right text-sm-center">
-                                    <a class=" btn btn-primary" href="{{path}}{{user.login}}{{user.id}}/{{doc.filePath}}"
+                                    <a class=" btn btn-primary" href="{{download}}"
                                        download="{{file}}">Download</a>
                                 </div>
                             </div>

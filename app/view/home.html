@@ -1,48 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
-<h1 class="h3 text-center  text-sm-left mt-4 mb-4">{{titleHome}}</h1>
-<div class="row">
-    <div class="col-sm-8 col-12">
+<style>
+    .card-houver:hover {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        -moz-box-shadow: #5a6268;
+        -webkit-box-shadow: #5a6268;
+        opacity: 90%;
+    }
+
+    .card{
+        width: 50px;
+        height: auto;
+    }
+
+</style>
+
+<div class="container">
+    <div class="row">
+        <h1 class="h3 text-center  text-sm-left mt-4 mb-4">{{titleHome}}</h1>
+    </div>
+    <div class="row">
+
         {% for user in users%}
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title text-dark text-center text-sm-left">{{user.authorName}}</h4>
+        <div class="card mt-3 mb-1 mr-0 mr-sm-1  col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3 px-1 py-1 card-houver">
+            <div class="card-header  px-0 py-0">
+
+                <img class="card-img" src="{{path}}{{user.login}}{{user.id}}/{{user.avatarPath}}"
+                     alt="{{user.authorName}}"
+                     title="{{user.authorName}}" width="90" height="auto"/>
+
             </div>
-            <div class="row no-gutters mb-2 ml-2">
-                <div class="col-sm-2">
-                    <!-- --------------------------------------- -->
-
-                    <img class="card-img-top" src="{{path}}{{user.login}}{{user.id}}/{{user.avatarPath}}"
-                         alt="{{user.authorName}}"
-                         title="{{user.authorName}}" width="130" height="auto"/>
-
-
+            <div class="row no-gutters ">
+                <div class="col-12 card-header py-2">
+                    <h1 class="card-title text-dark text-center h5">{{user.authorName}}</h1>
                 </div>
-                <div class="col-sm-10">
-                    <div class="card-body">
-
-                        <h5 class="card-subtitle">{{user.functionName}}</h5>
-                        <p class="card-text mt-2">{{user.story}}</p>
-                    </div>
-                    <div class="card-footer ">
-                        <div class="row">
-                            <div class="col-sm-6 col-12 text-sm-left text-center "><a href="?page=home&method=portfolio&id={{user.id}}" class="card-link">Portfólios</a></div>
-                            <div class="col-sm-6 col-12 text-sm-right text-center "><a href="#" class="card-link ">Mensagem</a></div>
-
-                        </div>
-                    </div>
+                <div class="card-body col-12 px-1">
+                    <h3 class="card-subtitle h6 ">{{user.functionName}}</h3>
                 </div>
+                <div class="col-12 py-2 card-footer">
+                    <p class=" card-text text-center">
+                        <a href="?page=home&method=portfolio&id={{user.id}}" class="btn-link">Portfólios</a>
+                    </p>
+                </div>
+
             </div>
         </div>
         {% endfor %}
-    </div>
-    <div class="col-sm-4 col-12"></div>
 
+        <!--    <div class="col-sm-4 col-12"></div>-->
+
+    </div>
 </div>
-</body>
-</html>

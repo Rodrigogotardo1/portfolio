@@ -1,10 +1,10 @@
 body {
-    font-family: "Poppins", sans-serif;
+    font-family: "Poppins", sans-serif, Roboto;
 }
 
-.bg-default {
-    background-color: #000 !important;
-    /*opacity: 30%;*/
+.bg-style {
+    background-color: black !important;
+
 }
 
 .sticker {
@@ -87,3 +87,4 @@ body {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
+

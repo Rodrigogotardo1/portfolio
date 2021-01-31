@@ -2,26 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eaaecf20-8dcf-4b19-9d4d-dcc05109951a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/css/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/img/icons/folder-open-solid.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/default.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/vieira34/c8e5cb0817c21a5ef349dbcbb8fd3621.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/vieira34/eeb01a8e74a212cd687e52aea3ab4bb9.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/.htaccess" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controller/DocsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controller/DocsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controller/UploadController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controller/UploadController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controller/UserController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/model/Document.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/model/Document.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/model/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/model/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/model/connection/Connection.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/model/connection/Connection.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/template/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/template/header.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/view/details.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/view/details.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/view/docs.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/view/docs.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/view/documentForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/view/documentForm.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/view/painel.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/view/painel.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/view/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/view/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/view/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/view/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/view/perfil.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/view/perfil.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/view/portfolios.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/view/portfolios.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/view/upload.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/view/upload.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/css/login.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/css/login.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/css/styles.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/admin240/file.doc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/admin240/image.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/admin240/perfil.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/vieira34/enem.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,8 +38,8 @@
         <option value="CSS File" />
         <option value="composer.json" />
         <option value="HTML File" />
-        <option value="JavaScript File" />
         <option value="Sass File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -150,7 +150,10 @@
       <workItem from="1611862485047" duration="1075000" />
       <workItem from="1611880673701" duration="7453000" />
       <workItem from="1611920495341" duration="8588000" />
-      <workItem from="1611929587965" duration="4746000" />
+      <workItem from="1611929587965" duration="6248000" />
+      <workItem from="1611941300060" duration="7724000" />
+      <workItem from="1611963389919" duration="3976000" />
+      <workItem from="1612016221494" duration="19010000" />
     </task>
     <servers />
   </component>

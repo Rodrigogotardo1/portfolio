@@ -126,6 +126,8 @@ class DocsController
 
 
             $content = array();
+            session_start();
+            $content['userId'] = $_SESSION['id'];
             $content['user'] = User::findById($doc->author);
             $content['doc'] = $doc;
             $content['docs'] = Document::findAllById($doc->author);
@@ -148,31 +150,35 @@ class DocsController
         switch ($extension) {
 
             case 'doc':
-                $pathDOC = './resources/img/capa/doc.png';
+                $docExtension = 'doc.png';
                 break;
 
             case 'docx':
-                $pathDOC = './resources/img/capa/docx.png';
+                $docExtension = 'docx.png';
                 break;
 
             case 'pdf':
-                $pathDOC = './resources/img/capa/pdf.png';
+                $docExtension = 'pdf.png';
                 break;
 
             case 'odt':
-                $pathDOC = './resources/img/capa/odt.png';
+                $docExtension = 'odt.png';
                 break;
 
             default:
-                $pathDOC = './resources/img/capa/perfil.png';
+                $docExtension = 'perfil.png';
                 break;
         }
-        $content['imgFile'] = $pathDOC;
+
 
         if (empty($doc->imagePath)) {
-            $content['imagePath'] = $pathDOC;
+            $content['imgFile'] = $docExtension;
+            $content['imagePath'] = $docExtension;
+            $content['path'] = './resources/img/capa/';
         } else {
+            $content['imgFile'] = './resources/img/capa/'.$docExtension;
             $content['imagePath'] = $doc->imagePath;
+            $content['filePath'] = $doc->filePath;
         }
 
         return $content;

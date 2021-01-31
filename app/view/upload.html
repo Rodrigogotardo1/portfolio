@@ -1,63 +1,73 @@
 <script>
     // window.onload = alterURL;
+    /*
+        function oneError(value) {
+            let val = document.getElementById(value).id;
 
-    function oneError(value) {
-        let val = document.getElementById(value).id;
+            let pathDOC = "";
+            switch (extension(val)) {
+                case 'doc':
+                    pathDOC = './resources/img/capa/doc.png';
+                    break;
 
-        let pathDOC = "";
-        switch (extension(val)) {
-            case 'doc':
-                pathDOC = './resources/img/capa/doc.png';
-                break;
+                case 'docx':
+                    pathDOC = './resources/img/capa/docx.png';
+                    break;
 
-            case 'docx':
-                pathDOC = './resources/img/capa/docx.png';
-                break;
+                case 'pdf':
+                    pathDOC = './resources/img/capa/pdf.png';
+                    break;
 
-            case 'pdf':
-                pathDOC = './resources/img/capa/pdf.png';
-                break;
+                case 'odt':
+                    pathDOC = './resources/img/capa/odt.png';
+                    break;
 
-            case 'odt':
-                pathDOC = './resources/img/capa/odt.png';
-                break;
+            }
 
+
+            document.getElementById(value).src = pathDOC;
+
+
+            console.log(extension(val));
         }
 
+        function extension(value) {
+            let ext = value.split('.');
+            return ext[ext.length - 1];
+        }
 
-        document.getElementById(value).src = pathDOC;
+        function deleteFile(id) {
+            let file = document.getElementById(id).id;
+            console.log(file);
+            document.querySelector("[name='delete']").value = file;
+        }
 
-
-        console.log(extension(val));
-    }
-
-    function extension(value) {
-        let ext = value.split('.');
-        return ext[ext.length - 1];
-    }
-
-    function deleteFile(id) {
-        let file = document.getElementById(id).id;
-        console.log(file);
-        document.querySelector("[name='delete']").value = file;
-    }
+     */
 </script>
 
-
+<style>
+    input[name='fileProduct'] {
+        display: none;
+    }
+</style>
 <div class="container">
     <h1 class="h1"> {{title}}</h1>
-    <div class="row mt-2">
+    <div class="row mt-2  ">
 
         <div class="col-12 col-sm-6">
-            <form class="" action="./?page=upload&method=submit" method="post" enctype="multipart/form-data">
+
+            <form class="justify-content-end" action="./?page=upload&method=submit" method="post" enctype="multipart/form-data">
 
 
                 <input type="hidden" name="MAX_FILE_SIZE" value="2147483647"/>
+                <label for="fileProduct">
+                    <img src="./resources/img/icons/folder-open-solid.svg" width="45" height="auto" title="Buscar arquivo">
+                </label>
                 <input type="file" name="fileProduct" id="fileProduct" accept=
                         "application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,
 text/plain, application/pdf, .png, .jpg, .jpeg, .svg">
 
-                <input type="submit" class="btn btn-primary" value="Enviar">
+                <input type="submit" class="btn btn-primary " value="Enviar">
 
             </form>
         </div>
@@ -84,13 +94,13 @@ text/plain, application/pdf, .png, .jpg, .jpeg, .svg">
     <div class="row mt-5">
 
         {% for file in allFiles %}
-        <div class="col-2 mb-2">
-            <div class="card">
+        <div class="col-6 col-sm-4 col-md-2 mb-2">
+            <div class="card mx-0 my-0">
                 <div class="card-body">
                     <img src="{{path}}{{file}}" alt="{{file}}" onerror="oneError('{{file}}')"
                          onclick="deleteFile('{{file}}')" title="{{file}}"
                          width="250" height="auto" id="{{file}}"
-                         class="card-img">
+                         class="card-img-top">
                 </div>
 
                 <div class="card-body justify-content-center d-inline-flex">

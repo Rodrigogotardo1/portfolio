@@ -6,13 +6,11 @@
         <div class="col-12 col-sm-6 col-md-7 col-lg-8 ">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title text-dark">{{user.authorName}}</h4>
+                    <h1  class=" h5 card-title text-dark">{{user.authorName}}</h1>
                 </div>
-                <div class="row no-gutters mb-2 ml-2">
-                    <div class="col-md-4">
-                        <!-- --------------------------------------- -->
-
-                        <img class="card-img-top" src="{{path}}{{user.login}}{{user.id}}/{{user.avatarPath}}"
+                <div class="row no-gutters mx-1 my-1">
+                    <div class="col-md-4 mb-1">
+                           <img class="card-img-top" src="{{path}}{{user.login}}{{user.id}}/{{user.avatarPath}}"
                              alt="{{user.authorName}}: conta inativa"
                              title="{{user.authorName}}" width="100" height="auto"/>
 
@@ -23,6 +21,38 @@
 
                             <h5 class="card-subtitle">{{user.functionName}}</h5>
                             <p class="card-text mt-2">{{user.story}}</p>
+                        </div>
+
+                    </div>
+                    <div class="card-footer col-12 px-1 py-1">
+                        <div class=" d-inline-flex col-12 justify-content-center justify-content-sm-end">
+                            <ul class="nav">
+                                <li class="nav-item"><a href="https://www.youtube.com/channel/UCaA204d8eSyd3iGN2jOuaJA"
+                                                        target="_black">
+                                    <img class="icon-social" src="./resources/img/youtube_francisco.png"
+                                         alt="Youtube"
+                                         title="Youtube Francisco Vieira"/>
+                                </a></li>
+                                <li class="nav-item"><a href="https://www.linkedin.com/in/francisco-v-castro/"
+                                                        target="_black">
+                                    <img class="icon-social"
+                                         src="./resources/img/linkedin_francisco.png"
+                                         alt="LinkedIn"
+                                         title="Visualizar LinkedIn Francisco Vieira"/>
+                                </a></li>
+                                <li class="nav-item"><a href="mailto:{{user.email}}">
+                                    <img class="icon-social" src="./resources/img/email_francisco.png"
+                                         alt="E-mail"
+                                         title="Enviar E-mail para Francisco Vieira"/>
+                                </a></li>
+                                <li class="nav-item"><a
+                                        href="https://api.whatsapp.com/send?phone=5593991663577&text=Ol%C3%A1%2C%20Francisco!%20Gostaria%20de%20conhecer%20um%20pouco%20mais%20sobre%20as%20possibilidades%20de%20fazer%20parte%20do%20meu%20time%2C%20somando%20direta%20e%20indiretamente%20com%20nossa%20equipe.%20Qual%20%C3%A9%20o%20melhor%20hor%C3%A1rio%20para%20entrarmos%20em%20contato%3F"
+                                        target="_black">
+                                    <img class="icon-social" src="./resources/img/whatsapp_francisco.png"
+                                         alt="Whatsapp"
+                                         title="Conversar com Francisco Vieira"/>
+                                </a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>

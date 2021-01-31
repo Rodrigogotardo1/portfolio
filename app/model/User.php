@@ -85,7 +85,7 @@ class User
         $array = array();
         try {
             $conn = Connection::getConnection();
-            $sql = $conn->prepare("SELECT * FROM author");
+            $sql = $conn->prepare("SELECT * FROM author order by rand();");
             $sql->execute();
 
             while ($row = $sql->fetchObject('User')) {

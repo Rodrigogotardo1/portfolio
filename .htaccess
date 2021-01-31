@@ -2,15 +2,15 @@ Options +FollowSymLinks
 
 
 Options All -Indexes
-DirectoryIndex index.php index.html index.htm index2.html
+    DirectoryIndex index.php index.html index.htm index2.html
 DirectoryIndex
 
 
 ErrorDocument 403 /portfolio/errors/error.html
 
 <Files log_erros.log>
- Order allow,deny
- Deny from all
- Satisfy All
+     Order allow,deny
+     Deny from all
+     Satisfy All
 </Files>
 
