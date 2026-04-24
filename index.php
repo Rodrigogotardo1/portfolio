@@ -13,6 +13,7 @@ require_once 'app/model/Document.php';
 require_once 'app/controller/PainelController.php';
 //
 require_once 'app/controller/UserController.php';
+require_once 'app/controller/ContactController.php';
 require_once 'app/model/User.php';
 //
 require_once 'vendor/autoload.php';

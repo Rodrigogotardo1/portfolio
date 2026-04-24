@@ -47,8 +47,7 @@ window.addEventListener('scroll', () => {
 });
 
 // ===== CONTACT FORM (PHPMailer backend) =====
-// Mude MAIL_ENDPOINT para a URL do servidor PHP onde o send.php está hospedado
-const MAIL_ENDPOINT = '/mail/send.php';
+const MAIL_ENDPOINT = 'index.php?page=contact&method=send';
 
 document.getElementById('contato-form')?.addEventListener('submit', async function(e) {
   e.preventDefault();
