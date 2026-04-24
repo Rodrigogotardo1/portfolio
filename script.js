@@ -30,6 +30,18 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
+// ===== MOUSE FOLLOW EFFECT =====
+document.addEventListener('mousemove', (e) => {
+  const x = (e.clientX / window.innerWidth) * 20;
+  const y = (e.clientY / window.innerHeight) * 20;
+  
+  const blob1 = document.querySelector('.blob1');
+  const blob2 = document.querySelector('.blob2');
+  
+  if (blob1) blob1.style.transform = `translate(${x}px, ${y}px)`;
+  if (blob2) blob2.style.transform = `translate(${-x}px, ${-y}px)`;
+});
+
 // ===== LANGUAGE TOGGLE SYSTEM =====
 const translations = {
   'pt-BR': {
