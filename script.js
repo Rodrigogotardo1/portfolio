@@ -31,10 +31,15 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
 // ===== MOUSE FOLLOW EFFECT & GLOW =====
+const follower = document.querySelector('.cursor-follower');
+
 document.addEventListener('mousemove', (e) => {
   const x = e.clientX;
   const y = e.clientY;
   
+  // Follower movement (Sutil)
+  if (follower) follower.style.transform = `translate3d(${x - 20}px, ${y - 20}px, 0)`;
+
   // Update Global Glow Effect (Tailwind Style)
   document.documentElement.style.setProperty('--mouse-x', `${x}px`);
   document.documentElement.style.setProperty('--mouse-y', `${y}px`);
