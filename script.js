@@ -47,7 +47,7 @@ window.addEventListener('scroll', () => {
 });
 
 // ===== CONTACT FORM (Web3Forms) =====
-const WEB3FORMS_KEY = '8ed4901ba757e34ff302bc719e4ac9d3';
+const WEB3FORMS_KEY = '8ed4901b-a757-e34f-f302-bc719e4ac9d3';
 
 document.getElementById('contato-form')?.addEventListener('submit', async function(e) {
   e.preventDefault();
