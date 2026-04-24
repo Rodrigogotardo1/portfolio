@@ -46,7 +46,10 @@ window.addEventListener('scroll', () => {
   });
 });
 
-// ===== CONTACT FORM (FormSubmit.co) =====
+// ===== CONTACT FORM (Web3Forms) =====
+// Access Key: get yours free at https://web3forms.com using dev.rodrigo.dev@gmail.com
+const WEB3FORMS_KEY = '8ed4901ba757e34ff302bc719e4ac9d3';
+
 document.getElementById('contato-form')?.addEventListener('submit', async function(e) {
   e.preventDefault();
   const btn = document.getElementById('submit-btn');
@@ -61,26 +64,26 @@ document.getElementById('contato-form')?.addEventListener('submit', async functi
   feedback.textContent = '';
 
   try {
-    const res = await fetch('https://formsubmit.co/ajax/dev.rodrigo.dev@gmail.com', {
+    const res = await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify({
+        access_key: WEB3FORMS_KEY,
         name: nome,
         email: email,
         message: mensagem,
-        _subject: `Portfolio contact from ${nome}`,
-        _captcha: 'false'
+        subject: `Portfolio contact from ${nome}`
       })
     });
 
     const data = await res.json();
 
-    if (data.success === 'true' || data.success === true) {
+    if (data.success) {
       feedback.style.color = 'var(--accent2)';
       feedback.textContent = '✅ Message sent! I\'ll get back to you soon.';
       this.reset();
     } else {
-      throw new Error('FormSubmit error');
+      throw new Error(data.message || 'Web3Forms error');
     }
   } catch (err) {
     feedback.style.color = '#f87171';
