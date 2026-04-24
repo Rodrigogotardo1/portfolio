@@ -30,16 +30,36 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-// ===== MOUSE FOLLOW EFFECT =====
+// ===== MOUSE FOLLOW EFFECT & TRACKER =====
+const cursor = document.querySelector('.cursor');
+const follower = document.querySelector('.cursor-follower');
+
 document.addEventListener('mousemove', (e) => {
-  const x = (e.clientX / window.innerWidth) * 20;
-  const y = (e.clientY / window.innerHeight) * 20;
+  const x = e.clientX;
+  const y = e.clientY;
   
+  if (cursor) cursor.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+  if (follower) follower.style.transform = `translate3d(${x - 16}px, ${y - 16}px, 0)`;
+
+  // Blob parallax effect
+  const bx = (x / window.innerWidth) * 20;
+  const by = (y / window.innerHeight) * 20;
   const blob1 = document.querySelector('.blob1');
   const blob2 = document.querySelector('.blob2');
-  
-  if (blob1) blob1.style.transform = `translate(${x}px, ${y}px)`;
-  if (blob2) blob2.style.transform = `translate(${-x}px, ${-y}px)`;
+  if (blob1) blob1.style.transform = `translate(${bx}px, ${by}px)`;
+  if (blob2) blob2.style.transform = `translate(${-bx}px, ${-by}px)`;
+});
+
+// Cursor hover effect
+document.querySelectorAll('a, button, .projeto-card').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    if (follower) follower.style.transform += ' scale(1.5)';
+    if (follower) follower.style.background = 'rgba(167, 139, 250, 0.2)';
+  });
+  el.addEventListener('mouseleave', () => {
+    if (follower) follower.style.transform = follower.style.transform.replace(' scale(1.5)', '');
+    if (follower) follower.style.background = 'rgba(167, 139, 250, 0.1)';
+  });
 });
 
 // ===== LANGUAGE TOGGLE SYSTEM =====
