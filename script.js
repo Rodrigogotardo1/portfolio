@@ -38,10 +38,15 @@ document.addEventListener('mousemove', (e) => {
   const x = e.clientX;
   const y = e.clientY;
   
+  // Custom cursor movement
   if (cursor) cursor.style.transform = `translate3d(${x}px, ${y}px, 0)`;
   if (follower) follower.style.transform = `translate3d(${x - 16}px, ${y - 16}px, 0)`;
 
-  // Blob parallax effect
+  // Update Global Glow Effect (Tailwind Style)
+  document.documentElement.style.setProperty('--mouse-x', `${x}px`);
+  document.documentElement.style.setProperty('--mouse-y', `${y}px`);
+
+  // Blob parallax effect (Hero background)
   const bx = (x / window.innerWidth) * 20;
   const by = (y / window.innerHeight) * 20;
   const blob1 = document.querySelector('.blob1');

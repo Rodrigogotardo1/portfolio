@@ -2,17 +2,19 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg: #080c14;
-  --bg2: #0d1220;
-  --surface: rgba(255,255,255,0.04);
+  --bg: #030712;
+  --bg2: #080c14;
+  --surface: rgba(255,255,255,0.03);
   --border: rgba(255,255,255,0.08);
-  --accent: #6c63ff;
-  --accent2: #a78bfa;
-  --cyan: #22d3ee;
-  --text: #e2e8f0;
+  --accent: #6366f1;
+  --accent2: #8b5cf6;
+  --cyan: #06b6d4;
+  --text: #f8fafc;
   --muted: #94a3b8;
-  --radius: 16px;
+  --radius: 20px;
   --font: 'Inter', sans-serif;
+  --mouse-x: 0%;
+  --mouse-y: 0%;
 }
 
 html { scroll-behavior: smooth; }
@@ -23,7 +25,22 @@ body {
   color: var(--text);
   line-height: 1.7;
   overflow-x: hidden;
+  position: relative;
   cursor: none; /* Hide default cursor to use custom one */
+}
+
+/* O "Glow" de fundo que segue o mouse */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    800px circle at var(--mouse-x) var(--mouse-y),
+    rgba(99, 102, 241, 0.08),
+    transparent 80%
+  );
 }
 
 /* ===== MOUSE TRACKER ===== */
@@ -115,13 +132,37 @@ a { text-decoration: none; color: inherit; }
   color: var(--text); font-size: 1.5rem; cursor: pointer;
 }
 
-/* ===== GLASS ===== */
+/* ===== GLASS & GLOW ===== */
 .glass {
   background: var(--surface);
   border: 1px solid var(--border);
   backdrop-filter: blur(12px);
   border-radius: var(--radius);
+  position: relative;
+  overflow: hidden;
 }
+
+/* Efeito de brilho nos cards (Spotlight) */
+.glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    400px circle at var(--mouse-x) var(--mouse-y),
+    rgba(255, 255, 255, 0.05),
+    transparent 40%
+  );
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.glass:hover::before {
+  opacity: 1;
+}
+
+.glass > * { position: relative; z-index: 1; }
 
 /* ===== BUTTONS ===== */
 .btn {
