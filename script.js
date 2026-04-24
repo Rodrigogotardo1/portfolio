@@ -1,49 +1,178 @@
-// ===== NAV SCROLL =====
+// ===== NAVIGATION & MOBILE MENU =====
 const navbar = document.getElementById('navbar');
+const menuBtn = document.getElementById('menu-btn');
+const navLinks = document.getElementById('nav-links');
+
 window.addEventListener('scroll', () => {
-  navbar.style.boxShadow = window.scrollY > 40
-    ? '0 4px 32px rgba(0,0,0,.5)'
-    : 'none';
+  if (window.scrollY > 50) {
+    navbar.style.padding = '0.5rem 0';
+    navbar.style.background = 'rgba(8, 12, 20, 0.95)';
+  } else {
+    navbar.style.padding = '1rem 0';
+    navbar.style.background = 'rgba(8, 12, 20, 0.85)';
+  }
 });
 
-// ===== MOBILE MENU =====
-const navToggle = document.getElementById('nav-toggle');
-const navLinks  = document.querySelector('.nav-links');
-navToggle?.addEventListener('click', () => navLinks.classList.toggle('open'));
-document.querySelectorAll('.nav-links a').forEach(a =>
-  a.addEventListener('click', () => navLinks.classList.remove('open'))
-);
+menuBtn?.addEventListener('click', () => {
+  navLinks.classList.toggle('open');
+  menuBtn.textContent = navLinks.classList.contains('open') ? '✕' : '☰';
+});
 
 // ===== SCROLL REVEAL =====
-const reveals = document.querySelectorAll(
-  '.glass, .section-header, .proj-link, .hero-content, .hero-btns'
-);
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      revealObserver.unobserve(e.target);
+const observerOptions = { threshold: 0.1 };
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
     }
   });
-}, { threshold: 0.1 });
+}, observerOptions);
 
-reveals.forEach(el => {
-  el.classList.add('reveal');
-  revealObserver.observe(el);
-});
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-// ===== ACTIVE NAV LINK =====
-const sections = document.querySelectorAll('section[id]');
-const navAnchors = document.querySelectorAll('.nav-links a');
-window.addEventListener('scroll', () => {
-  let current = '';
-  sections.forEach(s => {
-    if (window.scrollY >= s.offsetTop - 100) current = s.getAttribute('id');
+// ===== LANGUAGE TOGGLE SYSTEM =====
+const translations = {
+  'pt-BR': {
+    'nav-home': 'Início',
+    'nav-about': 'Sobre',
+    'nav-skills': 'Habilidades',
+    'nav-projects': 'Projetos',
+    'nav-contact': 'Contato',
+    'hero-welcome': 'Bem-vindo ao meu mundo digital',
+    'hero-role': 'Coordenador de TI & Desenvolvedor Full-stack',
+    'hero-desc': 'Transformando problemas complexos em soluções digitais elegantes e seguras.',
+    'btn-contact': 'Contate-me',
+    'btn-projects': 'Ver Projetos',
+    'scroll': 'Role para baixo',
+    'tag-about': 'Sobre Mim',
+    'about-title': 'Conheça minha trajetória',
+    'about-subtitle': 'Quem é Rodrigo?',
+    'about-p1': 'Baseado em Londrina, PR, sou um profissional apaixonado por tecnologia com mais de 8 anos de experiência em <strong>Coordenação de TI</strong> e <strong>Segurança Cibernética</strong>.',
+    'about-p2': 'Minha missão é construir sistemas que não sejam apenas funcionais, mas também resilientes e escaláveis. Adoro o desafio de aprender novas linguagens e frameworks.',
+    'stat-years': 'Anos Exp.',
+    'stat-projects': 'Projetos',
+    'about-edu': 'Educação & Foco',
+    'about-p3': 'Atualmente focado em arquiteturas <strong>Cloud Native</strong> e automação de processos para empresas de grande porte.',
+    'edu-1': 'Pós-graduação em Segurança da Informação',
+    'edu-2': 'Bacharel em Sistemas de Informação',
+    'edu-3': 'Foco: React, Node.js e PHP (MVC)',
+    'tag-skills': 'Expertise',
+    'skills-title': 'Habilidades Técnicas',
+    'skill-frontend': 'Frontend',
+    'skill-backend': 'Backend',
+    'skill-cyber': 'Cybersecurity',
+    'skill-infra': 'Infra & Cloud',
+    'tag-projects': 'Portfólio',
+    'projects-title': 'Projetos em Destaque',
+    'proj1-title': 'Sistema de Gestão Amplus',
+    'proj1-desc': 'Plataforma completa para gestão de documentos e controle de usuários com arquitetura MVC.',
+    'proj2-title': 'Limpeza Automática TI',
+    'proj2-desc': 'Ferramenta para otimização de máquinas e limpeza de arquivos temporários corporativos.',
+    'proj3-title': 'Auth Guard System',
+    'proj3-desc': 'Microsserviço de autenticação robusto focado em segurança e alta disponibilidade.',
+    'tag-contact': 'Contato',
+    'contact-title': 'Vamos conversar?',
+    'contact-subtitle': 'Informações',
+    'label-name': 'Nome',
+    'label-email': 'E-mail',
+    'label-message': 'Mensagem',
+    'btn-send': 'Enviar Mensagem',
+    'footer-made': 'Feito com ❤️ por',
+    'footer-role': 'Coordenador de TI | Cybersecurity | Londrina, PR',
+    'sending': 'Enviando...',
+    'sending-msg': 'Enviando mensagem...',
+    'success-msg': '✅ Mensagem enviada! Entrarei em contato em breve.',
+    'error-msg': '❌ Falha ao enviar. Por favor, envie diretamente para: dev.rodrigo.dev@gmail.com'
+  },
+  'en': {
+    'nav-home': 'Home',
+    'nav-about': 'About',
+    'nav-skills': 'Skills',
+    'nav-projects': 'Projects',
+    'nav-contact': 'Contact',
+    'hero-welcome': 'Welcome to my digital world',
+    'hero-role': 'IT Coordinator & Full-stack Developer',
+    'hero-desc': 'Transforming complex problems into elegant and secure digital solutions.',
+    'btn-contact': 'Contact Me',
+    'btn-projects': 'View Projects',
+    'scroll': 'Scroll down',
+    'tag-about': 'About Me',
+    'about-title': 'Discover my journey',
+    'about-subtitle': 'Who is Rodrigo?',
+    'about-p1': 'Based in Londrina, PR, I am a technology enthusiast with over 8 years of experience in <strong>IT Coordination</strong> and <strong>Cybersecurity</strong>.',
+    'about-p2': 'My mission is to build systems that are not only functional but also resilient and scalable. I love the challenge of learning new languages.',
+    'stat-years': 'Years Exp.',
+    'stat-projects': 'Projects',
+    'about-edu': 'Education & Focus',
+    'about-p3': 'Currently focused on <strong>Cloud Native</strong> architectures and process automation for large enterprises.',
+    'edu-1': 'Post-graduation in Information Security',
+    'edu-2': 'Bachelor in Information Systems',
+    'edu-3': 'Focus: React, Node.js and PHP (MVC)',
+    'tag-skills': 'Expertise',
+    'skills-title': 'Technical Skills',
+    'skill-frontend': 'Frontend',
+    'skill-backend': 'Backend',
+    'skill-cyber': 'Cybersecurity',
+    'skill-infra': 'Infra & Cloud',
+    'tag-projects': 'Portfolio',
+    'projects-title': 'Featured Projects',
+    'proj1-title': 'Amplus Management System',
+    'proj1-desc': 'Complete platform for document management and user control with MVC architecture.',
+    'proj2-title': 'Automatic IT Cleanup',
+    'proj2-desc': 'Tool for machine optimization and corporate temporary file cleanup.',
+    'proj3-title': 'Auth Guard System',
+    'proj3-desc': 'Robust authentication microservice focused on security and high availability.',
+    'tag-contact': 'Contact',
+    'contact-title': 'Let\'s talk?',
+    'contact-subtitle': 'Information',
+    'label-name': 'Name',
+    'label-email': 'Email',
+    'label-message': 'Message',
+    'btn-send': 'Send Message',
+    'footer-made': 'Made with ❤️ by',
+    'footer-role': 'IT Coordinator | Cybersecurity | Londrina, PR',
+    'sending': 'Sending...',
+    'sending-msg': 'Sending message...',
+    'success-msg': '✅ Message sent! I\'ll get back to you soon.',
+    'error-msg': '❌ Failed to send. Please email directly: dev.rodrigo.dev@gmail.com'
+  }
+};
+
+let currentLang = 'pt-BR';
+const langToggle = document.getElementById('lang-toggle');
+const langText = document.getElementById('lang-text');
+
+function setLanguage(lang) {
+  currentLang = lang;
+  langText.textContent = lang === 'pt-BR' ? 'EN' : 'PT';
+  document.documentElement.lang = lang;
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (translations[lang][key]) {
+      el.innerHTML = translations[lang][key];
+    }
   });
-  navAnchors.forEach(a => {
-    a.style.color = a.getAttribute('href') === `#${current}`
-      ? 'var(--text)' : '';
-  });
+
+  // Update placeholders separately
+  const nomeInput = document.getElementById('nome');
+  const emailInput = document.getElementById('email');
+  const msgInput = document.getElementById('mensagem');
+
+  if (lang === 'en') {
+    if (nomeInput) nomeInput.placeholder = 'Your full name';
+    if (emailInput) emailInput.placeholder = 'you@email.com';
+    if (msgInput) msgInput.placeholder = 'How can I help you?';
+  } else {
+    if (nomeInput) nomeInput.placeholder = 'Seu nome completo';
+    if (emailInput) emailInput.placeholder = 'seu@email.com';
+    if (msgInput) msgInput.placeholder = 'Como posso te ajudar?';
+  }
+}
+
+langToggle?.addEventListener('click', () => {
+  const newLang = currentLang === 'pt-BR' ? 'en' : 'pt-BR';
+  setLanguage(newLang);
 });
 
 // ===== CONTACT FORM (FormSubmit) =====
@@ -56,9 +185,9 @@ document.getElementById('contato-form')?.addEventListener('submit', async functi
   const email    = document.getElementById('email').value.trim();
   const mensagem = document.getElementById('mensagem').value.trim();
 
-  btn.textContent = 'Sending...';
+  btn.textContent = translations[currentLang]['sending'];
   btn.disabled = true;
-  feedback.textContent = 'Sending message...';
+  feedback.textContent = translations[currentLang]['sending-msg'];
   feedback.style.color = '#fff';
 
   try {
@@ -78,30 +207,16 @@ document.getElementById('contato-form')?.addEventListener('submit', async functi
 
     if (result.success === 'true' || result.success === true) {
       feedback.style.color = 'var(--accent2)';
-      feedback.textContent = '✅ Message sent! I\'ll get back to you soon.';
+      feedback.textContent = translations[currentLang]['success-msg'];
       this.reset();
     } else {
       throw new Error('Server error');
     }
   } catch (err) {
     feedback.style.color = '#f87171';
-    feedback.textContent = '❌ Failed to send. Please email directly: dev.rodrigo.dev@gmail.com';
+    feedback.textContent = translations[currentLang]['error-msg'];
   } finally {
-    btn.textContent = 'Send Message';
+    btn.textContent = translations[currentLang]['btn-send'];
     btn.disabled = false;
   }
-});
-
-// ===== SMOOTH CURSOR GLOW (optional easter egg) =====
-const glow = document.createElement('div');
-glow.style.cssText = `
-  position:fixed;pointer-events:none;z-index:9999;
-  width:300px;height:300px;border-radius:50%;
-  background:radial-gradient(circle,rgba(108,99,255,.08),transparent 70%);
-  transform:translate(-50%,-50%);transition:transform .1s;
-`;
-document.body.appendChild(glow);
-document.addEventListener('mousemove', e => {
-  glow.style.left = e.clientX + 'px';
-  glow.style.top  = e.clientY + 'px';
 });
