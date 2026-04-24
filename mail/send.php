@@ -64,7 +64,7 @@ use PHPMailer\PHPMailer\Exception;
 define('SMTP_HOST',     'smtp.gmail.com');
 define('SMTP_PORT',     587);
 define('SMTP_USER',     'dev.rodrigo.dev@gmail.com');   // seu Gmail
-define('SMTP_PASS',     'COLOQUE_AQUI_SUA_SENHA_DE_APP'); // Senha de App do Google
+define('SMTP_PASS',     'GmLeGaHeRa8943Il');              // Senha de App do Google
 define('MAIL_FROM',     'dev.rodrigo.dev@gmail.com');
 define('MAIL_FROM_NAME','Rodrigo Gotardo | Portfolio');
 define('MAIL_TO',       'dev.rodrigo.dev@gmail.com');
