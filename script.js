@@ -46,7 +46,10 @@ window.addEventListener('scroll', () => {
   });
 });
 
-// ===== CONTACT FORM (FormSubmit) =====
+// ===== CONTACT FORM (PHPMailer backend) =====
+// Mude MAIL_ENDPOINT para a URL do servidor PHP onde o send.php está hospedado
+const MAIL_ENDPOINT = '/mail/send.php';
+
 document.getElementById('contato-form')?.addEventListener('submit', async function(e) {
   e.preventDefault();
   const btn      = document.getElementById('submit-btn');
@@ -61,26 +64,20 @@ document.getElementById('contato-form')?.addEventListener('submit', async functi
   feedback.textContent = '';
 
   try {
-    const res = await fetch('https://formsubmit.co/ajax/dev.rodrigo.dev@gmail.com', {
+    const res = await fetch(MAIL_ENDPOINT, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({
-        name: nome,
-        email: email,
-        message: mensagem,
-        _subject: `Portfolio contact from ${nome}`,
-        _captcha: 'false'
-      })
+      body: JSON.stringify({ name: nome, email: email, message: mensagem })
     });
 
     const data = await res.json();
 
-    if (data.success === 'true' || data.success === true) {
+    if (data.success) {
       feedback.style.color = 'var(--accent2)';
       feedback.textContent = '✅ Message sent! I\'ll get back to you soon.';
       this.reset();
     } else {
-      throw new Error('Send error');
+      throw new Error(data.message || 'Send error');
     }
   } catch (err) {
     feedback.style.color = '#f87171';
