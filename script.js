@@ -46,9 +46,7 @@ window.addEventListener('scroll', () => {
   });
 });
 
-// ===== CONTACT FORM (Web3Forms) =====
-const WEB3FORMS_KEY = '8ed4901b-a757-e34f-f302-bc719e4ac9d3';
-
+// ===== CONTACT FORM (FormSubmit) =====
 document.getElementById('contato-form')?.addEventListener('submit', async function(e) {
   e.preventDefault();
   const btn      = document.getElementById('submit-btn');
@@ -60,40 +58,37 @@ document.getElementById('contato-form')?.addEventListener('submit', async functi
 
   btn.textContent = 'Sending...';
   btn.disabled = true;
-  feedback.textContent = 'Sending message, please wait...';
+  feedback.textContent = 'Sending message...';
   feedback.style.color = '#fff';
 
   try {
-    const response = await fetch('https://api.web3forms.com/submit', {
+    const response = await fetch('https://formsubmit.co/ajax/dev.rodrigo.dev@gmail.com', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify({
-        access_key: WEB3FORMS_KEY,
         name: nome,
         email: email,
         message: mensagem,
-        subject: `New Portfolio Message from ${nome}`
+        _subject: `New Portfolio Message from ${nome}`,
+        _captcha: 'false'
       })
     });
 
     const result = await response.json();
 
-    if (result.success) {
+    if (result.success === 'true' || result.success === true) {
       feedback.style.color = 'var(--accent2)';
       feedback.textContent = '✅ Message sent! I\'ll get back to you soon.';
       this.reset();
     } else {
-      // Show the actual error message from Web3Forms
-      throw new Error(result.message || 'Submission failed');
+      throw new Error('Server error');
     }
   } catch (err) {
-    console.error('Form Error:', err);
     feedback.style.color = '#f87171';
-    feedback.textContent = `❌ Error: ${err.message}. Please email directly: dev.rodrigo.dev@gmail.com`;
+    feedback.textContent = '❌ Failed to send. Please email directly: dev.rodrigo.dev@gmail.com';
   } finally {
     btn.textContent = 'Send Message';
     btn.disabled = false;
-    // Don't clear success messages immediately
   }
 });
 
